@@ -4,3 +4,8 @@ docker compose down -v
 
 docker compose up db -d
 mvn spring-boot:run
+
+
+SELECT id, author, filename, orderexecuted FROM databasechangelog ORDER BY orderexecuted;
+mvn liquibase:rollback -Dliquibase.rollbackCount=3
+mvn liquibase:update

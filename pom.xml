@@ -79,6 +79,18 @@
                     </excludes>
                 </configuration>
             </plugin>
+			<plugin>
+    			<groupId>org.liquibase</groupId>
+    			<artifactId>liquibase-maven-plugin</artifactId>
+    			<version>4.27.0</version>
+    			<configuration>
+        			<changeLogFile>src/main/resources/db/changelog/db.changelog-master.xml</changeLogFile>
+        			<url>jdbc:postgresql://localhost:5432/computer_store</url>
+        			<username>postgres</username>
+        			<password>postgres</password>
+        			<driver>org.postgresql.Driver</driver>
+    			</configuration>
+			</plugin>
         </plugins>
     </build>
 </project>

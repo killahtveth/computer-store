@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="8" author="student">
+        <comment>Создать таблицу истории цен</comment>
+
+        <createTable tableName="computer_price_history">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="computer_id" type="BIGINT">
+                <constraints nullable="false"
+                             foreignKeyName="fk_price_history_computer"
+                             references="computers(id)"/>
+            </column>
+            <column name="price" type="DECIMAL(10, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="valid_from" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="valid_to" type="TIMESTAMP">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+
+        <createIndex tableName="computer_price_history"
+                     indexName="idx_price_history_computer_valid_to">
+            <column name="computer_id"/>
+            <column name="valid_to"/>
+        </createIndex>
+
+        <rollback>
+            <dropTable tableName="computer_price_history"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="9" author="student">
+        <comment>Перелить текущие цены из computers.price в history</comment>
+
+        <sql>
+            INSERT INTO computer_price_history (computer_id, price, valid_from, valid_to)
+            SELECT id, price, CURRENT_TIMESTAMP, NULL
+            FROM computers
+            WHERE price IS NOT NULL;
+        </sql>
+
+        <rollback>
+            <delete tableName="computer_price_history"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="10" author="student">
+        <comment>Удалить колонку price из computers (теперь цена — в history)</comment>
+
+        <dropColumn tableName="computers" columnName="price"/>
+
+        <rollback>
+            <addColumn tableName="computers">
+                <column name="price" type="DECIMAL(10, 2)"/>
+            </addColumn>
+            <sql>
+                UPDATE computers c
+                SET price = h.price
+                FROM computer_price_history h
+                WHERE h.computer_id = c.id
+                  AND h.valid_to IS NULL;
+            </sql>
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>

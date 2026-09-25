@@ -3,12 +3,13 @@ package ru.ulstu.computerstore.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.math.BigDecimal;
+import java.util.List;
 
 @Data
 @Entity
 @Table(name = "computers")
 public class Computer {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -16,9 +17,10 @@ public class Computer {
     @Column(nullable = false)
     private String model;
 
-    @Column(nullable = false)
-    private BigDecimal price;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "status_id", nullable = false)
+    private ComputerStatus status;
 
-    @Column(nullable = false)
-    private String status; 
+    @OneToMany(mappedBy = "computer", cascade = CascadeType.ALL)
+    private List<ComputerPriceHistory> priceHistory;
 }

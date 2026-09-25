@@ -6,4 +6,7 @@
         https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
 
     <include file="db/changelog/changes/001-create-computers-table.xml"/>
+    <include file="db/changelog/changes/002-create-computer-statuses-table.xml"/>
+    <include file="db/changelog/changes/003-migrate-status-to-fk.xml"/>
+    <include file="db/changelog/changes/004-create-price-history.xml"/>
 </databaseChangeLog>
