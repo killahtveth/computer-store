@@ -60,4 +60,9 @@ public class ComputerController {
     public ResponseEntity<ReportResponse> getReport() {
         return ResponseEntity.ok(service.getReport());
     }
+
+    @GetMapping("/{id}/price-history")
+    public ResponseEntity<List<ComputerResponse.PriceHistoryDto>> getPriceHistory(@PathVariable Long id) {
+        return ResponseEntity.ok(service.getPriceHistory(id));
+    }
 }

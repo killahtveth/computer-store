@@ -154,4 +154,16 @@ public class ComputerService {
             historyDtos
     );
 }
+
+    @Transactional(readOnly = true)
+public List<ComputerResponse.PriceHistoryDto> getPriceHistory(Long id) {
+    Computer computer = getComputerEntity(id);
+    return computer.getPriceHistory().stream()
+            .map(h -> new ComputerResponse.PriceHistoryDto(
+                    h.getId(),
+                    h.getPrice(),
+                    h.getValidFrom() != null ? h.getValidFrom().toString() : null,
+                    h.getValidTo() != null ? h.getValidTo().toString() : null))
+            .toList();
+}
 }

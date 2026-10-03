@@ -2,67 +2,36 @@ package ru.ulstu.report.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import ru.ulstu.report.dto.ComputerReportItem;
-import ru.ulstu.report.dto.StatusReport;
-import ru.ulstu.report.entity.Computer;
-import ru.ulstu.report.entity.ComputerPriceHistory;
-import ru.ulstu.report.repository.ComputerPriceHistoryRepository;
-import ru.ulstu.report.repository.ComputerRepository;
+import ru.ulstu.report.client.CoreServiceClient;
 
-import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
 public class ReportService {
 
-    private final ComputerRepository computerRepository;
-    private final ComputerPriceHistoryRepository priceHistoryRepository;
+    private final CoreServiceClient coreServiceClient;
 
-    /**
-     * Список всех компьютеров с их текущей ценой.
-     */
-    @Transactional(readOnly = true)
-    public List<ComputerReportItem> getAllComputersReport() {
-        List<Computer> computers = computerRepository.findAll();
-        List<ComputerPriceHistory> currentPrices = priceHistoryRepository.findByValidToIsNull();
-
-        return computers.stream()
-                .map(c -> {
-                    BigDecimal currentPrice = currentPrices.stream()
-                            .filter(h -> h.getComputer().getId().equals(c.getId()))
-                            .map(ComputerPriceHistory::getPrice)
-                            .findFirst()
-                            .orElse(null);
-
-                    return new ComputerReportItem(
-                            c.getId(),
-                            c.getModel(),
-                            c.getStatus().getCode(),
-                            c.getStatus().getName(),
-                            currentPrice
-                    );
-                })
-                .toList();
+    public List<Map<String, Object>> getAllComputersReport() {
+        // Список для отчёта получаем через RestTemplate из core-service
+        return coreServiceClient.getAllComputers();
     }
 
-    /**
-     * Отчёт по количеству компьютеров в каждом статусе.
-     */
-    @Transactional(readOnly = true)
-    public StatusReport getStatusReport() {
-        long available = computerRepository.countByStatus_Code("AVAILABLE");
-        long sold = computerRepository.countByStatus_Code("SOLD");
-        long total = computerRepository.count();
-        return new StatusReport(available, sold, total);
+    public Map<String, Object> getStatusReport() {
+        Map<String, Object> coreReport = coreServiceClient.getCoreReport();
+        long available = ((Number) coreReport.get("availableCount")).longValue();
+        long sold = ((Number) coreReport.get("soldCount")).longValue();
+        return Map.of(
+                "availableCount", available,
+                "soldCount", sold,
+                "totalCount", available + sold
+        );
     }
 
-    /**
-     * История цен конкретного компьютера.
-     */
-    @Transactional(readOnly = true)
-    public List<ComputerPriceHistory> getPriceHistory(Long computerId) {
-        return priceHistoryRepository.findByComputerIdOrderByValidFromDesc(computerId);
-    }
+    public List<Map<String, Object>> getPriceHistoryReport(Long computerId) {
+    // Получаем сырые данные от core-service
+    List<Map<String, Object>> rawHistory = coreServiceClient.getPriceHistory(computerId);
+    return rawHistory;
+}
 }

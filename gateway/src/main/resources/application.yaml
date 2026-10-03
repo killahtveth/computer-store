@@ -19,7 +19,7 @@ spring:
         - id: core-service
           uri: http://core-service:8081
           predicates:
-            - Path=/api/computers/**
+            - Path=/api/**,/swagger-ui/**,/swagger-ui.html,/v3/api-docs/**
         - id: report-service
           uri: http://report-service:8082
           predicates:
