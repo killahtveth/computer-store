@@ -1,6 +1,15 @@
 server:
   port: 8080
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: always
+
 spring:
   application:
     name: gateway
@@ -15,3 +24,22 @@ spring:
           uri: http://report-service:8082
           predicates:
             - Path=/api/reports/**
+
+        - id: core-health
+          uri: http://core-service:8081
+          predicates:
+            - Path=/health/core
+          filters:
+            - RewritePath=/health/core, /actuator/health
+        - id: report-health
+          uri: http://report-service:8082
+          predicates:
+            - Path=/health/report
+          filters:
+            - RewritePath=/health/report, /actuator/health
+        - id: gateway-health
+          uri: http://localhost:8080
+          predicates:
+            - Path=/health/gateway
+          filters:
+            - RewritePath=/health/gateway, /actuator/health
