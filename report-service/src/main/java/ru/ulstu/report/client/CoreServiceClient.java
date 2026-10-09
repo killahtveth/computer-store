@@ -1,12 +1,12 @@
 package ru.ulstu.report.client;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
-import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 import java.util.Map;
@@ -22,32 +22,56 @@ public class CoreServiceClient {
     private String coreServiceUrl;
 
     public List<Map<String, Object>> getAllComputers() {
-        log.info(">>> report-service вызывает core-service: GET {}/api/computers", coreServiceUrl);
-        return restTemplate.exchange(
-                coreServiceUrl + "/api/computers",
+        String url = coreServiceUrl + "/api/computers";
+        log.info(">>> [REST] report-service вызывает core-service: GET {}", url);
+        long start = System.currentTimeMillis();
+
+        List<Map<String, Object>> result = restTemplate.exchange(
+                url,
                 HttpMethod.GET,
                 null,
                 new ParameterizedTypeReference<List<Map<String, Object>>>() {}
         ).getBody();
+
+        log.info("<<< [REST] Ответ от core-service за {} ms",
+                System.currentTimeMillis() - start);
+
+        return result;
     }
 
     public Map<String, Object> getCoreReport() {
-        log.info(">>> report-service вызывает core-service: GET {}/api/computers/report", coreServiceUrl);
-        return restTemplate.exchange(
-                coreServiceUrl + "/api/computers/report",
+        String url = coreServiceUrl + "/api/computers/report";
+        log.info(">>> [REST] report-service вызывает core-service: GET {}", url);
+        long start = System.currentTimeMillis();
+
+        Map<String, Object> result = restTemplate.exchange(
+                url,
                 HttpMethod.GET,
                 null,
                 new ParameterizedTypeReference<Map<String, Object>>() {}
         ).getBody();
+
+        log.info("<<< [REST] Ответ от core-service за {} ms",
+                System.currentTimeMillis() - start);
+
+        return result;
     }
 
     public List<Map<String, Object>> getPriceHistory(Long computerId) {
-        log.info(">>> report-service вызывает core-service: GET {}/api/computers/{}/price-history", coreServiceUrl, computerId);
-    return restTemplate.exchange(
-            coreServiceUrl + "/api/computers/" + computerId + "/price-history",
-            HttpMethod.GET,
-            null,
-            new ParameterizedTypeReference<List<Map<String, Object>>>() {}
-    ).getBody();
-}
+        String url = coreServiceUrl + "/api/computers/" + computerId + "/price-history";
+        log.info(">>> [REST] report-service вызывает core-service: GET {}", url);
+        long start = System.currentTimeMillis();
+
+        List<Map<String, Object>> result = restTemplate.exchange(
+                url,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<Map<String, Object>>>() {}
+        ).getBody();
+
+        log.info("<<< [REST] Ответ от core-service за {} ms",
+                System.currentTimeMillis() - start);
+
+        return result;
+    }
 }

@@ -1,13 +1,13 @@
 package ru.ulstu.computerstore.controller;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
-import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 import java.util.Map;
@@ -25,37 +25,61 @@ public class ReportFacadeController {
 
     @GetMapping("/computers")
     public ResponseEntity<List<Map<String, Object>>> getAllComputers() {
-        log.info(">>> core-service (фасад) вызывает report-service: GET {}/internal/reports/computers", reportServiceUrl);
+        String url = reportServiceUrl + "/internal/reports/computers";
+        log.info(">>> [REST] core-service (фасад) вызывает report-service: GET {}", url);
+        long start = System.currentTimeMillis();
+
         ResponseEntity<List<Map<String, Object>>> response = restTemplate.exchange(
-                reportServiceUrl + "/internal/reports/computers",
+                url,
                 HttpMethod.GET,
                 null,
-                new ParameterizedTypeReference<>() {}
+                new ParameterizedTypeReference<List<Map<String, Object>>>() {}
         );
+
+        long duration = System.currentTimeMillis() - start;
+        log.info("<<< [REST] Ответ от report-service за {} ms, статус {}",
+                duration, response.getStatusCode());
+
         return ResponseEntity.ok(response.getBody());
     }
 
     @GetMapping("/status")
     public ResponseEntity<Map<String, Object>> getStatus() {
-        log.info(">>> core-service (фасад) вызывает report-service: GET {}/internal/reports/status", reportServiceUrl);
+        String url = reportServiceUrl + "/internal/reports/status";
+        log.info(">>> [REST] core-service (фасад) вызывает report-service: GET {}", url);
+        long start = System.currentTimeMillis();
+
         ResponseEntity<Map<String, Object>> response = restTemplate.exchange(
-                reportServiceUrl + "/internal/reports/status",
+                url,
                 HttpMethod.GET,
                 null,
-                new ParameterizedTypeReference<>() {}
+                new ParameterizedTypeReference<Map<String, Object>>() {}
         );
+
+        long duration = System.currentTimeMillis() - start;
+        log.info("<<< [REST] Ответ от report-service за {} ms, статус {}",
+                duration, response.getStatusCode());
+
         return ResponseEntity.ok(response.getBody());
     }
 
     @GetMapping("/price-history/{computerId}")
     public ResponseEntity<List<Map<String, Object>>> getPriceHistory(@PathVariable Long computerId) {
-         log.info(">>> core-service (фасад) вызывает report-service: GET {}/internal/reports/price-history/{}", reportServiceUrl, computerId);
+        String url = reportServiceUrl + "/internal/reports/price-history/" + computerId;
+        log.info(">>> [REST] core-service (фасад) вызывает report-service: GET {}", url);
+        long start = System.currentTimeMillis();
+
         ResponseEntity<List<Map<String, Object>>> response = restTemplate.exchange(
-                reportServiceUrl + "/internal/reports/price-history/" + computerId,
+                url,
                 HttpMethod.GET,
                 null,
-                new ParameterizedTypeReference<>() {}
+                new ParameterizedTypeReference<List<Map<String, Object>>>() {}
         );
+
+        long duration = System.currentTimeMillis() - start;
+        log.info("<<< [REST] Ответ от report-service за {} ms, статус {}",
+                duration, response.getStatusCode());
+
         return ResponseEntity.ok(response.getBody());
     }
 }
