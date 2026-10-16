@@ -40,7 +40,7 @@ services:
 
   report-service:
     build: ./report-service
-    #container_name: computer_store_report
+    container_name: computer_store_report
     depends_on:
       db:
         condition: service_healthy
