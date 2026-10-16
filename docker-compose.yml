@@ -25,15 +25,18 @@ services:
         condition: service_healthy
       rabbitmq:
         condition: service_healthy
+      eureka-server:
+        condition: service_healthy
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/${POSTGRES_DB}
       SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER}
       SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
-      REPORT_SERVICE_URL: http://report-service:8082
+      REPORT_SERVICE_URL: lb://report-service
       SPRING_RABBITMQ_HOST: rabbitmq
       SPRING_RABBITMQ_PORT: 5672
       SPRING_RABBITMQ_USERNAME: ${RABBITMQ_DEFAULT_USER}
       SPRING_RABBITMQ_PASSWORD: ${RABBITMQ_DEFAULT_PASS}
+      EUREKA_URL: http://eureka-server:8761/eureka/
     networks:
       - app-network
       - elk-network
@@ -46,23 +49,26 @@ services:
 
   report-service:
     build: ./report-service
-    container_name: computer_store_report
+    #container_name: computer_store_report
     depends_on:
       db:
         condition: service_healthy
       rabbitmq:
         condition: service_healthy
+      eureka-server:
+        condition: service_healthy
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/${POSTGRES_DB}
       SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER}
       SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
-      CORE_SERVICE_URL: http://core-service:8081
+      CORE_SERVICE_URL: lb://core-service
       FILE_STORAGE_URL: http://file-storage-service:8083
       SPRING_RABBITMQ_HOST: rabbitmq
       SPRING_RABBITMQ_PORT: 5672
       SPRING_RABBITMQ_USERNAME: ${RABBITMQ_DEFAULT_USER}
       SPRING_RABBITMQ_PASSWORD: ${RABBITMQ_DEFAULT_PASS}
       SPRING_RABBITMQ_LISTENER_SIMPLE_ACKNOWLEDGE_MODE: manual
+      EUREKA_URL: http://eureka-server:8761/eureka/
     networks:
       - app-network
       - elk-network
@@ -77,10 +83,14 @@ services:
     build: ./gateway
     container_name: computer_store_gateway
     depends_on:
+      eureka-server:
+        condition: service_healthy
       core-service:
         condition: service_healthy
       report-service:
         condition: service_healthy
+    environment:
+      EUREKA_URL: http://eureka-server:8761/eureka/
     ports:
       - "8080:8080"
     networks:
@@ -172,6 +182,20 @@ services:
       timeout: 5s
       retries: 10
       start_period: 20s
+  eureka-server:
+    build: ./eureka-server
+    container_name: eureka-server
+    ports:
+      - "8761:8761"
+    networks:
+      - app-network
+      - elk-network
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8761/actuator/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
 
 volumes:
   postgres_data:

@@ -17,22 +17,18 @@ spring:
     gateway:
       routes:
         - id: core-service
-          uri: http://core-service:8081
+          uri: lb://core-service
           predicates:
             - Path=/api/**,/swagger-ui/**,/swagger-ui.html,/v3/api-docs/**
-        - id: report-service
-          uri: http://report-service:8082
-          predicates:
-            - Path=/api/reports/**
 
         - id: core-health
-          uri: http://core-service:8081
+          uri: lb://core-service
           predicates:
             - Path=/health/core
           filters:
             - RewritePath=/health/core, /actuator/health
         - id: report-health
-          uri: http://report-service:8082
+          uri: lb://report-service
           predicates:
             - Path=/health/report
           filters:
@@ -43,14 +39,18 @@ spring:
             - Path=/health/gateway
           filters:
             - RewritePath=/health/gateway, /actuator/health
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
   
-  eureka:
-    client:
-      service-url:
-        defaultZone: ${EUREKA_URL:http://eureka-server:8761/eureka/}
-      registry-fetch-interval-seconds: 5
-    instance:
-      prefer-ip-address: true
-      lease-renewal-interval-in-seconds: 5
-      lease-expiration-duration-in-seconds: 15
-      instance-id: ${spring.application.name}:${HOSTNAME:${random.value}}:${server.port}
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URL:http://eureka-server:8761/eureka/}
+    registry-fetch-interval-seconds: 5
+  instance:
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 15
+    instance-id: ${spring.application.name}:${HOSTNAME:${random.value}}:${server.port}

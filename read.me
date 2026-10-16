@@ -23,3 +23,16 @@ docker exec computer_store_db psql -U postgres -d computer_store -c "SELECT id, 
 docker compose start rabbitmq
 
 docker exec computer_store_db psql -U postgres -d computer_store -c "SELECT id, event_type, status, retry_count FROM outbox_events ORDER BY id DESC LIMIT 3;"
+
+http://localhost:15672/#/connections
+http://localhost:9001/browser/computerstore-reports
+http://localhost:8761/
+
+demo eureka
+http://localhost:8761 
+curl -i http://localhost:8080/api/computers
+curl -i http://localhost:8080/api/reports/status
+в рантайме масштабирование docker compose up -d --scale report-service=3
+запросы принимают разные инстансы docker compose logs report-service --tail 50
+роняем вторйо сервис docker stop computerstore-report-service-2
+добавляем четвертый docker compose up -d --scale report-service=4

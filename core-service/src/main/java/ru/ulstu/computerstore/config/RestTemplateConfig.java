@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 
 import java.util.List;
 
@@ -13,10 +14,8 @@ import java.util.List;
 public class RestTemplateConfig {
 
     @Bean
+    @LoadBalanced
     public RestTemplate restTemplate() {
-        // Отключаем keep-alive: каждый запрос — новое соединение,
-        // Docker DNS будет каждый раз резолвить имя и вернуть разный IP
-        System.setProperty("http.keepAlive", "false");
 
         SimpleClientHttpRequestFactory factory = new SimpleClientHttpRequestFactory();
         factory.setConnectTimeout(5000);

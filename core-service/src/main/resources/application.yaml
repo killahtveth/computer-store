@@ -3,7 +3,7 @@ server:
 
 report:
   service:
-    url: ${REPORT_SERVICE_URL:http://report-service:8082}
+    url: ${REPORT_SERVICE_URL:lb://report-service}
 
 management:
   endpoints:
@@ -16,7 +16,7 @@ management:
 
 spring:
   application:
-    name: computer-store
+    name: core-service
   datasource:
     url: ${SPRING_DATASOURCE_URL}
     username: ${SPRING_DATASOURCE_USERNAME}
@@ -45,16 +45,16 @@ spring:
     template:
       mandatory: true
   
-  eureka:
-    client:
-      service-url:
-        defaultZone: ${EUREKA_URL:http://eureka-server:8761/eureka/}
-      registry-fetch-interval-seconds: 5
-    instance:
-      prefer-ip-address: true
-      lease-renewal-interval-in-seconds: 5
-      lease-expiration-duration-in-seconds: 15
-      instance-id: ${spring.application.name}:${HOSTNAME:${random.value}}:${server.port}
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URL:http://eureka-server:8761/eureka/}
+    registry-fetch-interval-seconds: 5
+  instance:
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 15
+    instance-id: ${spring.application.name}:${HOSTNAME:${random.value}}:${server.port}
 
 springdoc:
   swagger-ui:
