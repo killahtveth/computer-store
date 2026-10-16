@@ -82,4 +82,71 @@ public class ReportFacadeController {
 
         return ResponseEntity.ok(response.getBody());
     }
+
+
+    @PostMapping("/export/status")
+public ResponseEntity<Map<String, Object>> exportStatus() {
+    String url = reportServiceUrl + "/internal/reports/export/status";
+    log.info(">>> [REST] core-service (фасад) вызывает report-service: POST {}", url);
+    long start = System.currentTimeMillis();
+
+    ResponseEntity<Map<String, Object>> response = restTemplate.exchange(
+            url, HttpMethod.POST, null,
+            new ParameterizedTypeReference<Map<String, Object>>() {}
+    );
+
+    log.info("<<< [REST] Ответ от report-service за {} ms, статус {}",
+            System.currentTimeMillis() - start, response.getStatusCode());
+    return ResponseEntity.ok(response.getBody());
+}
+
+@PostMapping("/export/computers")
+public ResponseEntity<Map<String, Object>> exportComputers() {
+    String url = reportServiceUrl + "/internal/reports/export/computers";
+    log.info(">>> [REST] core-service (фасад) вызывает report-service: POST {}", url);
+    long start = System.currentTimeMillis();
+
+    ResponseEntity<Map<String, Object>> response = restTemplate.exchange(
+            url, HttpMethod.POST, null,
+            new ParameterizedTypeReference<Map<String, Object>>() {}
+    );
+
+    log.info("<<< [REST] Ответ от report-service за {} ms, статус {}",
+            System.currentTimeMillis() - start, response.getStatusCode());
+    return ResponseEntity.ok(response.getBody());
+}
+
+@GetMapping("/files")
+public ResponseEntity<List<Map<String, Object>>> listFiles() {
+    String url = reportServiceUrl + "/internal/reports/files";
+    log.info(">>> [REST] core-service (фасад) вызывает report-service: GET {}", url);
+
+    ResponseEntity<List<Map<String, Object>>> response = restTemplate.exchange(
+            url, HttpMethod.GET, null,
+            new ParameterizedTypeReference<List<Map<String, Object>>>() {}
+    );
+    return ResponseEntity.ok(response.getBody());
+}
+
+@GetMapping("/files/{*objectName}")
+public ResponseEntity<byte[]> downloadFile(@PathVariable String objectName) {
+    if (objectName.startsWith("/")) {
+        objectName = objectName.substring(1);
+    }
+    String url = reportServiceUrl + "/internal/reports/files/" + objectName;
+    log.info(">>> [REST] core-service (фасад) вызывает report-service: GET {}", url);
+    long start = System.currentTimeMillis();
+
+    ResponseEntity<byte[]> response = restTemplate.exchange(
+            url, HttpMethod.GET, null, byte[].class);
+
+    log.info("<<< [REST] Ответ от report-service за {} ms, статус {}",
+            System.currentTimeMillis() - start, response.getStatusCode());
+
+    return ResponseEntity.ok()
+            .header("Content-Disposition",
+                    response.getHeaders().getFirst("Content-Disposition"))
+            .contentType(response.getHeaders().getContentType())
+            .body(response.getBody());
+}
 }

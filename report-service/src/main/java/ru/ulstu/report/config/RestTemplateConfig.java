@@ -3,6 +3,7 @@ package ru.ulstu.report.config;
 import org.slf4j.MDC;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.web.client.RestTemplate;
 
@@ -13,7 +14,15 @@ public class RestTemplateConfig {
 
     @Bean
     public RestTemplate restTemplate() {
-        RestTemplate restTemplate = new RestTemplate();
+        // Отключаем keep-alive: каждый запрос — новое соединение,
+        // Docker DNS будет каждый раз резолвить имя и вернуть разный IP
+        System.setProperty("http.keepAlive", "false");
+
+        SimpleClientHttpRequestFactory factory = new SimpleClientHttpRequestFactory();
+        factory.setConnectTimeout(5000);
+        factory.setReadTimeout(10000);
+
+        RestTemplate restTemplate = new RestTemplate(factory);
 
         ClientHttpRequestInterceptor traceIdInterceptor = (request, body, execution) -> {
             String traceId = MDC.get("traceId");

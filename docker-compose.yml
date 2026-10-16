@@ -40,7 +40,7 @@ services:
 
   report-service:
     build: ./report-service
-    container_name: computer_store_report
+    #container_name: computer_store_report
     depends_on:
       db:
         condition: service_healthy
@@ -49,6 +49,7 @@ services:
       SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER}
       SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
       CORE_SERVICE_URL: http://core-service:8081
+      FILE_STORAGE_URL: http://file-storage-service:8083
     networks:
       - app-network
       - elk-network
@@ -74,6 +75,28 @@ services:
       - elk-network
     healthcheck:
       test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8080/actuator/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  minio:
+    image: coollabsio/minio:latest
+    container_name: computer_store_minio
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin
+    volumes:
+      - minio_data:/data
+    ports:
+      - "9000:9000" # API порт (для приложений)
+      - "9001:9001" # Веб-консоль (для отладки)
+    networks:
+      - app-network
+      - elk-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -120,6 +143,7 @@ services:
 volumes:
   postgres_data:
   elasticsearch_data:
+  minio_data:
 
 networks:
   app-network:

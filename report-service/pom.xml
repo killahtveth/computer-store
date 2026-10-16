@@ -50,6 +50,11 @@
             <artifactId>logstash-logback-encoder</artifactId>
             <version>7.4</version>
         </dependency>
+        <dependency>
+            <groupId>io.minio</groupId>
+            <artifactId>minio</artifactId>
+            <version>8.5.7</version> <!-- Версия может быть новее, проверьте актуальную -->
+        </dependency>
     </dependencies>
 
     <build>

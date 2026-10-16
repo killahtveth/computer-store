@@ -19,6 +19,13 @@ public class TraceIdFilter extends OncePerRequestFilter {
 
     private static final String TRACE_ID_HEADER = "X-Trace-Id";
     private static final String TRACE_ID_MDC_KEY = "traceId";
+    private static final String INSTANCE_ID_MDC_KEY = "instanceId";
+
+    private final InstanceInfo instanceInfo;
+
+    public TraceIdFilter(InstanceInfo instanceInfo) {
+        this.instanceInfo = instanceInfo;
+    }
 
     @Override
     protected void doFilterInternal(HttpServletRequest request,
@@ -29,13 +36,15 @@ public class TraceIdFilter extends OncePerRequestFilter {
             traceId = UUID.randomUUID().toString();
         }
 
-        MDC.put("traceId", traceId);
+        MDC.put(TRACE_ID_MDC_KEY, traceId);
+        MDC.put(INSTANCE_ID_MDC_KEY, instanceInfo.getInstanceId());   
         response.setHeader(TRACE_ID_HEADER, traceId);
 
         try {
             chain.doFilter(request, response);
         } finally {
-            MDC.remove("traceId");
+            MDC.remove(TRACE_ID_MDC_KEY);
+            MDC.remove(INSTANCE_ID_MDC_KEY);                         
         }
     }
 }

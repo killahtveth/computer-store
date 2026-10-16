@@ -9,3 +9,5 @@ mvn spring-boot:run
 SELECT id, author, filename, orderexecuted FROM databasechangelog ORDER BY orderexecuted;
 mvn liquibase:rollback -Dliquibase.rollbackCount=3
 mvn liquibase:update
+
+docker exec -it computer_store_minio ls -la /data/
