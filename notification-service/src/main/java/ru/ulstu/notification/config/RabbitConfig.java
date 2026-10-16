@@ -1,0 +1,93 @@
+package ru.ulstu.notification.config;
+
+import org.springframework.amqp.core.*;
+import org.springframework.amqp.rabbit.connection.ConnectionFactory;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class RabbitConfig {
+
+    public static final String SAGA_EXCHANGE = "saga.exchange";
+    public static final String DLX = "saga.dlx";
+    public static final String DLQ = "saga.dlq";
+
+    // Команда от orchestrator → notification-service
+    public static final String NOTIFY_COMMAND_QUEUE = "notification.send.command.queue";
+    public static final String NOTIFY_COMMAND_KEY   = "notification.send.command";
+
+    // Ответ от notification-service → orchestrator
+    public static final String NOTIFY_RESULT_QUEUE = "saga.notify.result.queue";
+    public static final String NOTIFY_SENT_KEY     = "notification.sent";
+    public static final String NOTIFY_FAILED_KEY   = "notification.failed";
+
+    @Bean
+    public TopicExchange sagaExchange() {
+        return ExchangeBuilder.topicExchange(SAGA_EXCHANGE).durable(true).build();
+    }
+
+    @Bean
+    public DirectExchange sagaDlx() {
+        return ExchangeBuilder.directExchange(DLX).durable(true).build();
+    }
+
+    @Bean
+    public Queue notifyCommandQueue() {
+        return QueueBuilder.durable(NOTIFY_COMMAND_QUEUE)
+                .deadLetterExchange(DLX)
+                .deadLetterRoutingKey(DLQ)
+                .build();
+    }
+
+    @Bean
+    public Queue notifyResultQueue() {
+        return QueueBuilder.durable(NOTIFY_RESULT_QUEUE)
+                .deadLetterExchange(DLX)
+                .deadLetterRoutingKey(DLQ)
+                .build();
+    }
+
+    @Bean
+    public Queue sagaDlq() {
+        return QueueBuilder.durable(DLQ).build();
+    }
+
+    @Bean
+    public Binding notifyCommandBinding() {
+        return BindingBuilder.bind(notifyCommandQueue())
+                .to(sagaExchange()).with(NOTIFY_COMMAND_KEY);
+    }
+
+    @Bean
+    public Binding notifySentBinding() {
+        return BindingBuilder.bind(notifyResultQueue())
+                .to(sagaExchange()).with(NOTIFY_SENT_KEY);
+    }
+
+    @Bean
+    public Binding notifyFailedBinding() {
+        return BindingBuilder.bind(notifyResultQueue())
+                .to(sagaExchange()).with(NOTIFY_FAILED_KEY);
+    }
+
+    @Bean
+    public Binding sagaDlqBinding() {
+        return BindingBuilder.bind(sagaDlq()).to(sagaDlx()).with(DLQ);
+    }
+
+    @Bean
+    public Jackson2JsonMessageConverter jackson2JsonMessageConverter() {
+        return new Jackson2JsonMessageConverter();
+    }
+
+    @Bean
+    public RabbitTemplate rabbitTemplate(ConnectionFactory connectionFactory,
+                                         Jackson2JsonMessageConverter converter) {
+        RabbitTemplate template = new RabbitTemplate(connectionFactory);
+        template.setMessageConverter(converter);
+        template.setMandatory(true);
+        return template;
+    }
+}
