@@ -19,6 +19,28 @@ management:
 spring:
   application:
     name: report-service
+  rabbitmq:
+    host: ${SPRING_RABBITMQ_HOST:rabbitmq}
+    port: ${SPRING_RABBITMQ_PORT:5672}
+    username: ${SPRING_RABBITMQ_USERNAME:guest}
+    password: ${SPRING_RABBITMQ_PASSWORD:guest}
+    listener:
+      simple:
+        acknowledge-mode: manual
+        default-requeue-rejected: false
+        concurrency: 1
+        max-concurrency: 3
+
+  eureka:
+    client:
+      service-url:
+        defaultZone: ${EUREKA_URL:http://eureka-server:8761/eureka/}
+      registry-fetch-interval-seconds: 5
+    instance:
+      prefer-ip-address: true
+      lease-renewal-interval-in-seconds: 5
+      lease-expiration-duration-in-seconds: 15
+      instance-id: ${spring.application.name}:${HOSTNAME:${random.value}}:${server.port}
 
 logging:
   level:

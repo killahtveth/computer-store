@@ -11,3 +11,15 @@ mvn liquibase:rollback -Dliquibase.rollbackCount=3
 mvn liquibase:update
 
 docker exec -it computer_store_minio ls -la /data/
+
+demo5lab
+docker exec computer_store_db psql -U postgres -d computer_store -c "SELECT id, event_type, status, retry_count FROM outbox_events ORDER BY id DESC LIMIT 5;"
+
+docker compose stop rabbitmq
+POST http://localhost:8080/api/reports/export/status
+
+docker exec computer_store_db psql -U postgres -d computer_store -c "SELECT id, event_type, status, retry_count, error FROM outbox_events ORDER BY id DESC LIMIT 3;"
+
+docker compose start rabbitmq
+
+docker exec computer_store_db psql -U postgres -d computer_store -c "SELECT id, event_type, status, retry_count FROM outbox_events ORDER BY id DESC LIMIT 3;"

@@ -11,6 +11,8 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.concurrent.TimeUnit;
 
+import io.minio.errors.ErrorResponseException;
+
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -52,5 +54,22 @@ public class MinioService {
                         .build()
         );
     }
+
+    public boolean objectExists(String objectName) throws Exception {
+    try {
+        minioClient.statObject(
+                StatObjectArgs.builder()
+                        .bucket(bucketName)
+                        .object(objectName)
+                        .build()
+        );
+        return true;
+    } catch (ErrorResponseException e) {
+        if ("NoSuchKey".equals(e.errorResponse().code())) {
+            return false;
+        }
+        throw e;
+    }
+}
 
 }

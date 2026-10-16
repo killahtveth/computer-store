@@ -2,12 +2,15 @@ package ru.ulstu.computerstore.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import ru.ulstu.computerstore.service.ReportExportService;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
+
 
 import java.util.List;
 import java.util.Map;
@@ -19,6 +22,7 @@ import java.util.Map;
 public class ReportFacadeController {
 
     private final RestTemplate restTemplate;
+    private final ReportExportService reportExportService;      
 
     @Value("${report.service.url}")
     private String reportServiceUrl;
@@ -86,34 +90,24 @@ public class ReportFacadeController {
 
     @PostMapping("/export/status")
 public ResponseEntity<Map<String, Object>> exportStatus() {
-    String url = reportServiceUrl + "/internal/reports/export/status";
-    log.info(">>> [REST] core-service (фасад) вызывает report-service: POST {}", url);
-    long start = System.currentTimeMillis();
+    String requestId = reportExportService.requestStatusExport();
 
-    ResponseEntity<Map<String, Object>> response = restTemplate.exchange(
-            url, HttpMethod.POST, null,
-            new ParameterizedTypeReference<Map<String, Object>>() {}
-    );
-
-    log.info("<<< [REST] Ответ от report-service за {} ms, статус {}",
-            System.currentTimeMillis() - start, response.getStatusCode());
-    return ResponseEntity.ok(response.getBody());
+    return ResponseEntity.accepted().body(Map.of(
+            "requestId", requestId,
+            "status", "QUEUED",
+            "message", "Отчёт по статусам поставлен в очередь"
+    ));
 }
 
 @PostMapping("/export/computers")
 public ResponseEntity<Map<String, Object>> exportComputers() {
-    String url = reportServiceUrl + "/internal/reports/export/computers";
-    log.info(">>> [REST] core-service (фасад) вызывает report-service: POST {}", url);
-    long start = System.currentTimeMillis();
+    String requestId = reportExportService.requestComputersExport();
 
-    ResponseEntity<Map<String, Object>> response = restTemplate.exchange(
-            url, HttpMethod.POST, null,
-            new ParameterizedTypeReference<Map<String, Object>>() {}
-    );
-
-    log.info("<<< [REST] Ответ от report-service за {} ms, статус {}",
-            System.currentTimeMillis() - start, response.getStatusCode());
-    return ResponseEntity.ok(response.getBody());
+    return ResponseEntity.accepted().body(Map.of(
+            "requestId", requestId,
+            "status", "QUEUED",
+            "message", "Отчёт по компьютерам поставлен в очередь"
+    ));
 }
 
 @GetMapping("/files")
