@@ -34,22 +34,34 @@ public class OutboxPublisher {
 
         for (OutboxEvent event : events) {
             try {
-                ReportExportMessage message =
-                        objectMapper.readValue(event.getPayload(), ReportExportMessage.class);
+                String exchange;
+                String routingKey;
+                Object payload;
 
-                String routingKey = switch (event.getEventType()) {
-                    case "REPORT_EXPORT_STATUS" -> RabbitConfig.STATUS_ROUTING_KEY;
-                    case "REPORT_EXPORT_COMPUTERS" -> RabbitConfig.COMPUTERS_ROUTING_KEY;
+                switch (event.getEventType()) {
+                    case "REPORT_EXPORT_STATUS" -> {
+                        exchange = RabbitConfig.EXCHANGE;
+                        routingKey = RabbitConfig.STATUS_ROUTING_KEY;
+                        payload = objectMapper.readValue(event.getPayload(), ReportExportMessage.class);
+                    }
+                    case "REPORT_EXPORT_COMPUTERS" -> {
+                        exchange = RabbitConfig.EXCHANGE;
+                        routingKey = RabbitConfig.COMPUTERS_ROUTING_KEY;
+                        payload = objectMapper.readValue(event.getPayload(), ReportExportMessage.class);
+                    }
+                    case "REPORT_EXPORT_FULL" -> {
+                        exchange = RabbitConfig.SAGA_EXCHANGE;
+                        routingKey = RabbitConfig.SAGA_START_KEY;
+                        payload = objectMapper.readValue(event.getPayload(), SagaMessage.class);
+                    }
                     default -> throw new IllegalArgumentException(
                             "Неизвестный тип outbox-события: " + event.getEventType());
-                };
+                }
 
                 CorrelationData correlationData = new CorrelationData(event.getEventId());
 
-                rabbitTemplate.convertAndSend(
-                        RabbitConfig.EXCHANGE,
-                        routingKey,
-                        message,
+                final Object finalPayload = payload;
+                rabbitTemplate.convertAndSend(exchange, routingKey, finalPayload,
                         m -> {
                             m.getMessageProperties().setMessageId(event.getEventId());
                             m.getMessageProperties().setContentType(MessageProperties.CONTENT_TYPE_JSON);

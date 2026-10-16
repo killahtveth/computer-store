@@ -10,6 +10,7 @@ import ru.ulstu.computerstore.dto.ComputerResponse;
 import ru.ulstu.computerstore.dto.ReportResponse;
 import ru.ulstu.computerstore.entity.OutboxEvent;
 import ru.ulstu.computerstore.messaging.ReportExportMessage;
+import ru.ulstu.computerstore.messaging.SagaMessage;
 import ru.ulstu.computerstore.repository.OutboxEventRepository;
 
 import java.math.BigDecimal;
@@ -71,6 +72,41 @@ public class ReportExportService {
         return requestId;
     }
 
+    /**
+     * Запускает сагу: собрать данные → сохранить в outbox → orchestrator
+     * получит команду saga.start и начнёт цепочку.
+     *
+     *  если true — requestId будет начинаться с "fail-",
+     *                              чтобы notification-service симулировал сбой
+     *                              (для демонстрации компенсации)
+     */
+    @Transactional
+    public String requestFullExport(boolean forceFailNotification) {
+        ReportResponse report = computerService.getReport();
+
+        Map<String, Object> status = new LinkedHashMap<>();
+        status.put("availableCount", report.availableCount());
+        status.put("soldCount", report.soldCount());
+        status.put("totalCount", report.availableCount() + report.soldCount());
+
+        String requestId = (forceFailNotification ? "fail-" : "") + UUID.randomUUID();
+        String sagaId = UUID.randomUUID().toString();
+
+        SagaMessage message = new SagaMessage(
+                sagaId,
+                requestId,
+                MDC.get("traceId"),
+                "STATUS",
+                status,
+                null,
+                null,
+                null
+        );
+
+        saveOutboxSaga(message);
+        return sagaId;
+    }
+
     private Map<String, Object> toMap(ComputerResponse c) {
         Map<String, Object> map = new LinkedHashMap<>();
         map.put("id", c.id());
@@ -104,6 +140,21 @@ public class ReportExportService {
             outboxEventRepository.save(event);
         } catch (JsonProcessingException e) {
             throw new RuntimeException("Не удалось сериализовать outbox-сообщение", e);
+        }
+    }
+
+    private void saveOutboxSaga(SagaMessage message) {
+        try {
+            OutboxEvent event = new OutboxEvent();
+            event.setEventId(message.sagaId());
+            event.setEventType("REPORT_EXPORT_FULL");
+            event.setPayload(objectMapper.writeValueAsString(message));
+            event.setStatus("NEW");
+            event.setCreatedAt(LocalDateTime.now());
+            event.setRetryCount(0);
+            outboxEventRepository.save(event);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException("Не удалось сериализовать saga-сообщение", e);
         }
     }
 }

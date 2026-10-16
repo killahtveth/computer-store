@@ -143,4 +143,18 @@ public ResponseEntity<byte[]> downloadFile(@PathVariable String objectName) {
             .contentType(response.getHeaders().getContentType())
             .body(response.getBody());
 }
+
+@PostMapping("/export/full")
+public ResponseEntity<Map<String, Object>> exportFull(
+        @RequestParam(name = "forceFailNotification", defaultValue = "false") boolean forceFail) {
+    String sagaId = reportExportService.requestFullExport(forceFail);
+
+    return ResponseEntity.accepted().body(Map.of(
+            "sagaId", sagaId,
+            "status", "STARTED",
+            "message", "Сага запущена: " + (forceFail
+                    ? "с симуляцией сбоя уведомления"
+                    : "нормальный сценарий")
+    ));
+}
 }
