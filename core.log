@@ -1,0 +1,202 @@
+computer_store_core  | 04:43:43,192 |-WARN in net.logstash.logback.appender.LogstashTcpSocketAppender[LOGSTASH] - Log destination logstash/<unresolved>:5000: connection failed. java.net.ConnectException: Connection refused
+computer_store_core  | 	at java.net.ConnectException: Connection refused
+computer_store_core  | 	at 	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
+computer_store_core  | 	at 	at java.base/sun.nio.ch.Net.pollConnectNow(Unknown Source)
+computer_store_core  | 	at 	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(Unknown Source)
+computer_store_core  | 	at 	at java.base/sun.nio.ch.NioSocketImpl.connect(Unknown Source)
+computer_store_core  | 	at 	at java.base/java.net.SocksSocketImpl.connect(Unknown Source)
+computer_store_core  | 	at 	at java.base/java.net.Socket.connect(Unknown Source)
+computer_store_core  | 	at 	at net.logstash.logback.appender.AbstractLogstashTcpSocketAppender$TcpSendingEventHandler.openSocket(AbstractLogstashTcpSocketAppender.java:765)
+computer_store_core  | 	at 	at net.logstash.logback.appender.AbstractLogstashTcpSocketAppender$TcpSendingEventHandler.onStart(AbstractLogstashTcpSocketAppender.java:691)
+computer_store_core  | 	at 	at net.logstash.logback.appender.AsyncDisruptorAppender$EventClearingEventHandler.onStart(AsyncDisruptorAppender.java:382)
+computer_store_core  | 	at 	at net.logstash.logback.encoder.com.lmax.disruptor.BatchEventProcessor.notifyStart(BatchEventProcessor.java:224)
+computer_store_core  | 	at 	at net.logstash.logback.encoder.com.lmax.disruptor.BatchEventProcessor.run(BatchEventProcessor.java:120)
+computer_store_core  | 	at 	at java.base/java.lang.Thread.run(Unknown Source)
+computer_store_core  | 04:43:43,201 |-WARN in net.logstash.logback.appender.LogstashTcpSocketAppender[LOGSTASH] - Log destination logstash/<unresolved>:5000: Waiting 29965ms before attempting reconnection.
+computer_store_core  | 
+computer_store_core  |   .   ____          _            __ _ _
+computer_store_core  |  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+computer_store_core  | ( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+computer_store_core  |  \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+computer_store_core  |   '  |____| .__|_| |_|_| |_\__, | / / / /
+computer_store_core  |  =========|_|==============|___/=/_/_/_/
+computer_store_core  |  :: Spring Boot ::                (v3.2.5)
+computer_store_core  | 
+computer_store_core  | 2026-10-17 04:43:44.266 [main] INFO  r.u.c.ComputerstoreApplication - Starting ComputerstoreApplication v0.0.1-SNAPSHOT using Java 17.0.20.1 with PID 1 (/app/app.jar started by root in /app)
+computer_store_core  | 2026-10-17 04:43:44.295 [main] INFO  r.u.c.ComputerstoreApplication - No active profile set, falling back to 1 default profile: "default"
+computer_store_core  | 2026-10-17 04:43:51.170 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+computer_store_core  | 2026-10-17 04:43:52.158 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 919 ms. Found 4 JPA repository interfaces.
+computer_store_core  | 2026-10-17 04:43:53.818 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=f3be6b03-7987-3598-9b29-9472a4da5b8d
+computer_store_core  | 2026-10-17 04:43:55.289 [main] WARN  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.cloud.client.loadbalancer.LoadBalancerAutoConfiguration$DeferringLoadBalancerInterceptorConfig' of type [org.springframework.cloud.client.loadbalancer.LoadBalancerAutoConfiguration$DeferringLoadBalancerInterceptorConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). The currently created BeanPostProcessor [lbRestClientPostProcessor] is declared through a non-static factory method on that class; consider declaring it as static instead.
+computer_store_core  | 2026-10-17 04:43:55.305 [main] WARN  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'deferringLoadBalancerInterceptor' of type [org.springframework.cloud.client.loadbalancer.DeferringLoadBalancerInterceptor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [lbRestClientPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
+computer_store_core  | 2026-10-17 04:43:57.533 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
+computer_store_core  | 2026-10-17 04:43:57.633 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+computer_store_core  | 2026-10-17 04:43:57.638 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.20]
+computer_store_core  | 2026-10-17 04:43:57.876 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+computer_store_core  | 2026-10-17 04:43:57.891 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 13348 ms
+computer_store_core  | 2026-10-17 04:43:59.896 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+computer_store_core  | 2026-10-17 04:44:00.583 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@3d4b45b
+computer_store_core  | 2026-10-17 04:44:00.591 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+computer_store_core  | 2026-10-17 04:44:01.320 [main] INFO  liquibase.database - Set default schema name to public
+computer_store_core  | 2026-10-17 04:44:04.538 [main] INFO  liquibase.changelog - Reading from public.databasechangelog
+computer_store_core  | Database is up to date, no changesets to execute
+computer_store_core  | 2026-10-17 04:44:04.928 [main] INFO  liquibase.changelog - Reading from public.databasechangelog
+computer_store_core  | 2026-10-17 04:44:04.959 [main] INFO  liquibase.util - UPDATE SUMMARY
+computer_store_core  | 2026-10-17 04:44:04.960 [main] INFO  liquibase.util - Run:                          0
+computer_store_core  | 2026-10-17 04:44:04.960 [main] INFO  liquibase.util - Previously run:              11
+computer_store_core  | 2026-10-17 04:44:04.960 [main] INFO  liquibase.util - Filtered out:                 0
+computer_store_core  | 2026-10-17 04:44:04.960 [main] INFO  liquibase.util - -------------------------------
+computer_store_core  | 2026-10-17 04:44:04.960 [main] INFO  liquibase.util - Total change sets:           11
+computer_store_core  | 2026-10-17 04:44:04.961 [main] INFO  liquibase.util - Update summary generated
+computer_store_core  | 2026-10-17 04:44:05.162 [main] INFO  liquibase.lockservice - Successfully released change log lock
+computer_store_core  | 2026-10-17 04:44:05.174 [main] INFO  liquibase.command - Command execution complete
+computer_store_core  | 2026-10-17 04:44:05.541 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+computer_store_core  | 2026-10-17 04:44:05.888 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.4.Final
+computer_store_core  | 2026-10-17 04:44:06.148 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+computer_store_core  | 2026-10-17 04:44:08.148 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+computer_store_core  | 2026-10-17 04:44:11.416 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+computer_store_core  | 2026-10-17 04:44:11.484 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+computer_store_core  | 2026-10-17 04:44:15.472 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+computer_store_core  | 2026-10-17 04:44:19.577 [main] INFO  o.s.c.n.e.c.DiscoveryClientOptionalArgsConfiguration - Eureka HTTP Client uses RestTemplate.
+computer_store_core  | 2026-10-17 04:44:20.008 [main] WARN  o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+computer_store_core  | 2026-10-17 04:44:20.071 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 2 endpoint(s) beneath base path '/actuator'
+computer_store_core  | 2026-10-17 04:44:20.531 [main] INFO  o.s.c.n.eureka.InstanceInfoFactory - Setting initial instance status as: STARTING
+computer_store_core  | 2026-10-17 04:44:20.854 [main] INFO  c.netflix.discovery.DiscoveryClient - Initializing Eureka in region us-east-1
+computer_store_core  | 2026-10-17 04:44:20.876 [main] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+computer_store_core  | 2026-10-17 04:44:20.994 [main] INFO  c.netflix.discovery.DiscoveryClient - Disable delta property : false
+computer_store_core  | 2026-10-17 04:44:20.995 [main] INFO  c.netflix.discovery.DiscoveryClient - Single vip registry refresh property : null
+computer_store_core  | 2026-10-17 04:44:20.995 [main] INFO  c.netflix.discovery.DiscoveryClient - Force full registry fetch : false
+computer_store_core  | 2026-10-17 04:44:20.995 [main] INFO  c.netflix.discovery.DiscoveryClient - Application is null : false
+computer_store_core  | 2026-10-17 04:44:20.995 [main] INFO  c.netflix.discovery.DiscoveryClient - Registered Applications size is zero : true
+computer_store_core  | 2026-10-17 04:44:20.995 [main] INFO  c.netflix.discovery.DiscoveryClient - Application version is -1: true
+computer_store_core  | 2026-10-17 04:44:20.995 [main] INFO  c.netflix.discovery.DiscoveryClient - Getting all instance registry info from the eureka server
+computer_store_core  | 2026-10-17 04:44:22.523 [main] INFO  c.netflix.discovery.DiscoveryClient - The response status is 200
+computer_store_core  | 2026-10-17 04:44:22.530 [main] INFO  c.netflix.discovery.DiscoveryClient - Starting heartbeat executor: renew interval is: 5
+computer_store_core  | 2026-10-17 04:44:22.539 [main] INFO  c.n.discovery.InstanceInfoReplicator - InstanceInfoReplicator onDemand update allowed rate per min is 4
+computer_store_core  | 2026-10-17 04:44:22.551 [main] INFO  c.netflix.discovery.DiscoveryClient - Discovery Client initialized at timestamp 1792212262550 with initial instances count: 0
+computer_store_core  | 2026-10-17 04:44:22.563 [main] INFO  o.s.c.n.e.s.EurekaServiceRegistry - Registering application CORE-SERVICE with eureka with status UP
+computer_store_core  | 2026-10-17 04:44:22.566 [main] INFO  c.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1792212262566, current=UP, previous=STARTING]
+computer_store_core  | 2026-10-17 04:44:22.575 [DiscoveryClient-InstanceInfoReplicator-0] INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_CORE-SERVICE/core-service:0b343b0d41fb:8081: registering service...
+computer_store_core  | 2026-10-17 04:44:22.631 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8081 (http) with context path ''
+computer_store_core  | 2026-10-17 04:44:22.640 [main] INFO  o.s.c.n.e.s.EurekaAutoServiceRegistration - Updating port to 8081
+computer_store_core  | 2026-10-17 04:44:22.749 [main] INFO  r.u.c.ComputerstoreApplication - Started ComputerstoreApplication in 43.581 seconds (process running for 46.825)
+computer_store_core  | 2026-10-17 04:44:22.765 [DiscoveryClient-InstanceInfoReplicator-0] INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_CORE-SERVICE/core-service:0b343b0d41fb:8081 - registration status: 204
+computer_store_core  | Hibernate: select oe1_0.id,oe1_0.created_at,oe1_0.error,oe1_0.event_id,oe1_0.event_type,oe1_0.payload,oe1_0.retry_count,oe1_0.sent_at,oe1_0.status from outbox_events oe1_0 where oe1_0.status=? order by oe1_0.created_at fetch first ? rows only
+computer_store_core  | 2026-10-17 04:44:27.530 [DiscoveryClient-CacheRefreshExecutor-0] INFO  c.netflix.discovery.DiscoveryClient - Disable delta property : false
+computer_store_core  | 2026-10-17 04:44:27.530 [DiscoveryClient-CacheRefreshExecutor-0] INFO  c.netflix.discovery.DiscoveryClient - Single vip registry refresh property : null
+computer_store_core  | 2026-10-17 04:44:27.530 [DiscoveryClient-CacheRefreshExecutor-0] INFO  c.netflix.discovery.DiscoveryClient - Force full registry fetch : false
+computer_store_core  | 2026-10-17 04:44:27.531 [DiscoveryClient-CacheRefreshExecutor-0] INFO  c.netflix.discovery.DiscoveryClient - Application is null : false
+computer_store_core  | 2026-10-17 04:44:27.531 [DiscoveryClient-CacheRefreshExecutor-0] INFO  c.netflix.discovery.DiscoveryClient - Registered Applications size is zero : true
+computer_store_core  | 2026-10-17 04:44:27.531 [DiscoveryClient-CacheRefreshExecutor-0] INFO  c.netflix.discovery.DiscoveryClient - Application version is -1: false
+computer_store_core  | 2026-10-17 04:44:27.531 [DiscoveryClient-CacheRefreshExecutor-0] INFO  c.netflix.discovery.DiscoveryClient - Getting all instance registry info from the eureka server
+computer_store_core  | 2026-10-17 04:44:27.540 [DiscoveryClient-CacheRefreshExecutor-0] INFO  c.netflix.discovery.DiscoveryClient - The response status is 200
+computer_store_core  | 2026-10-17 04:44:27.800 [http-nio-8081-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+computer_store_core  | 2026-10-17 04:44:27.800 [http-nio-8081-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+computer_store_core  | 2026-10-17 04:44:27.808 [http-nio-8081-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 7 ms
+computer_store_core  | 2026-10-17 04:44:27.909 [http-nio-8081-exec-1] INFO  o.s.a.r.c.CachingConnectionFactory - Attempting to connect to: [rabbitmq:5672]
+computer_store_core  | Hibernate: select oe1_0.id,oe1_0.created_at,oe1_0.error,oe1_0.event_id,oe1_0.event_type,oe1_0.payload,oe1_0.retry_count,oe1_0.sent_at,oe1_0.status from outbox_events oe1_0 where oe1_0.status=? order by oe1_0.created_at fetch first ? rows only
+computer_store_core  | 2026-10-17 04:44:28.176 [http-nio-8081-exec-1] INFO  o.s.a.r.c.CachingConnectionFactory - Created new connection: rabbitConnectionFactory#5e14f405:0/SimpleConnection@6be7561 [delegate=amqp://computerstore@172.18.0.4:5672/, localPort=53310]
+computer_store_core  | 2026-10-17 04:44:32.542 [DiscoveryClient-CacheRefreshExecutor-0] INFO  c.netflix.discovery.DiscoveryClient - Disable delta property : false
+computer_store_core  | 2026-10-17 04:44:32.543 [DiscoveryClient-CacheRefreshExecutor-0] INFO  c.netflix.discovery.DiscoveryClient - Single vip registry refresh property : null
+computer_store_core  | 2026-10-17 04:44:32.543 [DiscoveryClient-CacheRefreshExecutor-0] INFO  c.netflix.discovery.DiscoveryClient - Force full registry fetch : false
+computer_store_core  | 2026-10-17 04:44:32.543 [DiscoveryClient-CacheRefreshExecutor-0] INFO  c.netflix.discovery.DiscoveryClient - Application is null : false
+computer_store_core  | 2026-10-17 04:44:32.543 [DiscoveryClient-CacheRefreshExecutor-0] INFO  c.netflix.discovery.DiscoveryClient - Registered Applications size is zero : true
+computer_store_core  | 2026-10-17 04:44:32.543 [DiscoveryClient-CacheRefreshExecutor-0] INFO  c.netflix.discovery.DiscoveryClient - Application version is -1: false
+computer_store_core  | 2026-10-17 04:44:32.543 [DiscoveryClient-CacheRefreshExecutor-0] INFO  c.netflix.discovery.DiscoveryClient - Getting all instance registry info from the eureka server
+computer_store_core  | 2026-10-17 04:44:32.580 [DiscoveryClient-CacheRefreshExecutor-0] INFO  c.netflix.discovery.DiscoveryClient - The response status is 200
+computer_store_core  | Hibernate: select oe1_0.id,oe1_0.created_at,oe1_0.error,oe1_0.event_id,oe1_0.event_type,oe1_0.payload,oe1_0.retry_count,oe1_0.sent_at,oe1_0.status from outbox_events oe1_0 where oe1_0.status=? order by oe1_0.created_at fetch first ? rows only
+computer_store_core  | Hibernate: select oe1_0.id,oe1_0.created_at,oe1_0.error,oe1_0.event_id,oe1_0.event_type,oe1_0.payload,oe1_0.retry_count,oe1_0.sent_at,oe1_0.status from outbox_events oe1_0 where oe1_0.status=? order by oe1_0.created_at fetch first ? rows only
+computer_store_core  | Hibernate: select oe1_0.id,oe1_0.created_at,oe1_0.error,oe1_0.event_id,oe1_0.event_type,oe1_0.payload,oe1_0.retry_count,oe1_0.sent_at,oe1_0.status from outbox_events oe1_0 where oe1_0.status=? order by oe1_0.created_at fetch first ? rows only
+computer_store_core  | Hibernate: select oe1_0.id,oe1_0.created_at,oe1_0.error,oe1_0.event_id,oe1_0.event_type,oe1_0.payload,oe1_0.retry_count,oe1_0.sent_at,oe1_0.status from outbox_events oe1_0 where oe1_0.status=? order by oe1_0.created_at fetch first ? rows only
+computer_store_core  | Hibernate: select oe1_0.id,oe1_0.created_at,oe1_0.error,oe1_0.event_id,oe1_0.event_type,oe1_0.payload,oe1_0.retry_count,oe1_0.sent_at,oe1_0.status from outbox_events oe1_0 where oe1_0.status=? order by oe1_0.created_at fetch first ? rows only
+computer_store_core  | Hibernate: select oe1_0.id,oe1_0.created_at,oe1_0.error,oe1_0.event_id,oe1_0.event_type,oe1_0.payload,oe1_0.retry_count,oe1_0.sent_at,oe1_0.status from outbox_events oe1_0 where oe1_0.status=? order by oe1_0.created_at fetch first ? rows only
+computer_store_core  | Hibernate: select oe1_0.id,oe1_0.created_at,oe1_0.error,oe1_0.event_id,oe1_0.event_type,oe1_0.payload,oe1_0.retry_count,oe1_0.sent_at,oe1_0.status from outbox_events oe1_0 where oe1_0.status=? order by oe1_0.created_at fetch first ? rows only
+computer_store_core  | Hibernate: select oe1_0.id,oe1_0.created_at,oe1_0.error,oe1_0.event_id,oe1_0.event_type,oe1_0.payload,oe1_0.retry_count,oe1_0.sent_at,oe1_0.status from outbox_events oe1_0 where oe1_0.status=? order by oe1_0.created_at fetch first ? rows only
+computer_store_core  | Hibernate: select oe1_0.id,oe1_0.created_at,oe1_0.error,oe1_0.event_id,oe1_0.event_type,oe1_0.payload,oe1_0.retry_count,oe1_0.sent_at,oe1_0.status from outbox_events oe1_0 where oe1_0.status=? order by oe1_0.created_at fetch first ? rows only
+computer_store_core  | Hibernate: select oe1_0.id,oe1_0.created_at,oe1_0.error,oe1_0.event_id,oe1_0.event_type,oe1_0.payload,oe1_0.retry_count,oe1_0.sent_at,oe1_0.status from outbox_events oe1_0 where oe1_0.status=? order by oe1_0.created_at fetch first ? rows only
+computer_store_core  | Hibernate: select oe1_0.id,oe1_0.created_at,oe1_0.error,oe1_0.event_id,oe1_0.event_type,oe1_0.payload,oe1_0.retry_count,oe1_0.sent_at,oe1_0.status from outbox_events oe1_0 where oe1_0.status=? order by oe1_0.created_at fetch first ? rows only
+computer_store_core  | 2026-10-17 04:45:26.115 [report-async-1] INFO  r.u.c.service.ReportFileAsyncService - >>> [ASYNC] listFiles on thread=report-async-1
+computer_store_core  | 2026-10-17 04:45:26.323 [report-async-1] ERROR r.u.c.c.ReportFileAsyncController - Ошибка async listFiles
+computer_store_core  | java.util.concurrent.CompletionException: org.springframework.web.client.HttpServerErrorException$InternalServerError: 500 : "{"timestamp":"2026-10-17T04:45:26.307+00:00","status":500,"error":"Internal Server Error","path":"/internal/reports/files"}"
+computer_store_core  | 	at org.springframework.util.concurrent.FutureUtils.lambda$toSupplier$0(FutureUtils.java:78)
+computer_store_core  | 	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(Unknown Source)
+computer_store_core  | 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+computer_store_core  | 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+computer_store_core  | 	at java.base/java.lang.Thread.run(Unknown Source)
+computer_store_core  | Caused by: org.springframework.web.client.HttpServerErrorException$InternalServerError: 500 : "{"timestamp":"2026-10-17T04:45:26.307+00:00","status":500,"error":"Internal Server Error","path":"/internal/reports/files"}"
+computer_store_core  | 	at org.springframework.web.client.HttpServerErrorException.create(HttpServerErrorException.java:102)
+computer_store_core  | 	at org.springframework.web.client.DefaultResponseErrorHandler.handleError(DefaultResponseErrorHandler.java:186)
+computer_store_core  | 	at org.springframework.web.client.DefaultResponseErrorHandler.handleError(DefaultResponseErrorHandler.java:137)
+computer_store_core  | 	at org.springframework.web.client.ResponseErrorHandler.handleError(ResponseErrorHandler.java:63)
+computer_store_core  | 	at org.springframework.web.client.RestTemplate.handleResponse(RestTemplate.java:942)
+computer_store_core  | 	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:891)
+computer_store_core  | 	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:790)
+computer_store_core  | 	at org.springframework.web.client.RestTemplate.exchange(RestTemplate.java:701)
+computer_store_core  | 	at ru.ulstu.computerstore.service.ReportFileAsyncService.listFilesAsync(ReportFileAsyncService.java:31)
+computer_store_core  | 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+computer_store_core  | 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+computer_store_core  | 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+computer_store_core  | 	at java.base/java.lang.reflect.Method.invoke(Unknown Source)
+computer_store_core  | 	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:354)
+computer_store_core  | 	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196)
+computer_store_core  | 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+computer_store_core  | 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:768)
+computer_store_core  | 	at org.springframework.aop.interceptor.AsyncExecutionInterceptor.lambda$invoke$0(AsyncExecutionInterceptor.java:113)
+computer_store_core  | 	at org.springframework.util.concurrent.FutureUtils.lambda$toSupplier$0(FutureUtils.java:74)
+computer_store_core  | 	... 4 common frames omitted
+computer_store_core  | Hibernate: select oe1_0.id,oe1_0.created_at,oe1_0.error,oe1_0.event_id,oe1_0.event_type,oe1_0.payload,oe1_0.retry_count,oe1_0.sent_at,oe1_0.status from outbox_events oe1_0 where oe1_0.status=? order by oe1_0.created_at fetch first ? rows only
+computer_store_core  | Hibernate: select oe1_0.id,oe1_0.created_at,oe1_0.error,oe1_0.event_id,oe1_0.event_type,oe1_0.payload,oe1_0.retry_count,oe1_0.sent_at,oe1_0.status from outbox_events oe1_0 where oe1_0.status=? order by oe1_0.created_at fetch first ? rows only
+computer_store_core  | 2026-10-17 04:45:33.683 [report-async-2] INFO  r.u.c.service.ReportFileAsyncService - >>> [ASYNC] listFiles on thread=report-async-2
+computer_store_core  | 2026-10-17 04:45:33.704 [report-async-2] ERROR r.u.c.c.ReportFileAsyncController - Ошибка async listFiles
+computer_store_core  | java.util.concurrent.CompletionException: org.springframework.web.client.HttpServerErrorException$InternalServerError: 500 : "{"timestamp":"2026-10-17T04:45:33.697+00:00","status":500,"error":"Internal Server Error","path":"/internal/reports/files"}"
+computer_store_core  | 	at org.springframework.util.concurrent.FutureUtils.lambda$toSupplier$0(FutureUtils.java:78)
+computer_store_core  | 	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(Unknown Source)
+computer_store_core  | 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+computer_store_core  | 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+computer_store_core  | 	at java.base/java.lang.Thread.run(Unknown Source)
+computer_store_core  | Caused by: org.springframework.web.client.HttpServerErrorException$InternalServerError: 500 : "{"timestamp":"2026-10-17T04:45:33.697+00:00","status":500,"error":"Internal Server Error","path":"/internal/reports/files"}"
+computer_store_core  | 	at org.springframework.web.client.HttpServerErrorException.create(HttpServerErrorException.java:102)
+computer_store_core  | 	at org.springframework.web.client.DefaultResponseErrorHandler.handleError(DefaultResponseErrorHandler.java:186)
+computer_store_core  | 	at org.springframework.web.client.DefaultResponseErrorHandler.handleError(DefaultResponseErrorHandler.java:137)
+computer_store_core  | 	at org.springframework.web.client.ResponseErrorHandler.handleError(ResponseErrorHandler.java:63)
+computer_store_core  | 	at org.springframework.web.client.RestTemplate.handleResponse(RestTemplate.java:942)
+computer_store_core  | 	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:891)
+computer_store_core  | 	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:790)
+computer_store_core  | 	at org.springframework.web.client.RestTemplate.exchange(RestTemplate.java:701)
+computer_store_core  | 	at ru.ulstu.computerstore.service.ReportFileAsyncService.listFilesAsync(ReportFileAsyncService.java:31)
+computer_store_core  | 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+computer_store_core  | 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+computer_store_core  | 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+computer_store_core  | 	at java.base/java.lang.reflect.Method.invoke(Unknown Source)
+computer_store_core  | 	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:354)
+computer_store_core  | 	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196)
+computer_store_core  | 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+computer_store_core  | 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:768)
+computer_store_core  | 	at org.springframework.aop.interceptor.AsyncExecutionInterceptor.lambda$invoke$0(AsyncExecutionInterceptor.java:113)
+computer_store_core  | 	at org.springframework.util.concurrent.FutureUtils.lambda$toSupplier$0(FutureUtils.java:74)
+computer_store_core  | 	... 4 common frames omitted
+computer_store_core  | Hibernate: select oe1_0.id,oe1_0.created_at,oe1_0.error,oe1_0.event_id,oe1_0.event_type,oe1_0.payload,oe1_0.retry_count,oe1_0.sent_at,oe1_0.status from outbox_events oe1_0 where oe1_0.status=? order by oe1_0.created_at fetch first ? rows only
+computer_store_core  | Hibernate: select oe1_0.id,oe1_0.created_at,oe1_0.error,oe1_0.event_id,oe1_0.event_type,oe1_0.payload,oe1_0.retry_count,oe1_0.sent_at,oe1_0.status from outbox_events oe1_0 where oe1_0.status=? order by oe1_0.created_at fetch first ? rows only
+computer_store_core  | Hibernate: select oe1_0.id,oe1_0.created_at,oe1_0.error,oe1_0.event_id,oe1_0.event_type,oe1_0.payload,oe1_0.retry_count,oe1_0.sent_at,oe1_0.status from outbox_events oe1_0 where oe1_0.status=? order by oe1_0.created_at fetch first ? rows only
+computer_store_core  | Hibernate: select oe1_0.id,oe1_0.created_at,oe1_0.error,oe1_0.event_id,oe1_0.event_type,oe1_0.payload,oe1_0.retry_count,oe1_0.sent_at,oe1_0.status from outbox_events oe1_0 where oe1_0.status=? order by oe1_0.created_at fetch first ? rows only
+computer_store_core  | Hibernate: select oe1_0.id,oe1_0.created_at,oe1_0.error,oe1_0.event_id,oe1_0.event_type,oe1_0.payload,oe1_0.retry_count,oe1_0.sent_at,oe1_0.status from outbox_events oe1_0 where oe1_0.status=? order by oe1_0.created_at fetch first ? rows only
+computer_store_core  | Hibernate: select oe1_0.id,oe1_0.created_at,oe1_0.error,oe1_0.event_id,oe1_0.event_type,oe1_0.payload,oe1_0.retry_count,oe1_0.sent_at,oe1_0.status from outbox_events oe1_0 where oe1_0.status=? order by oe1_0.created_at fetch first ? rows only
+computer_store_core  | Hibernate: select oe1_0.id,oe1_0.created_at,oe1_0.error,oe1_0.event_id,oe1_0.event_type,oe1_0.payload,oe1_0.retry_count,oe1_0.sent_at,oe1_0.status from outbox_events oe1_0 where oe1_0.status=? order by oe1_0.created_at fetch first ? rows only
+computer_store_core  | Hibernate: select oe1_0.id,oe1_0.created_at,oe1_0.error,oe1_0.event_id,oe1_0.event_type,oe1_0.payload,oe1_0.retry_count,oe1_0.sent_at,oe1_0.status from outbox_events oe1_0 where oe1_0.status=? order by oe1_0.created_at fetch first ? rows only
+computer_store_core  | Hibernate: select oe1_0.id,oe1_0.created_at,oe1_0.error,oe1_0.event_id,oe1_0.event_type,oe1_0.payload,oe1_0.retry_count,oe1_0.sent_at,oe1_0.status from outbox_events oe1_0 where oe1_0.status=? order by oe1_0.created_at fetch first ? rows only
+computer_store_core  | Hibernate: select oe1_0.id,oe1_0.created_at,oe1_0.error,oe1_0.event_id,oe1_0.event_type,oe1_0.payload,oe1_0.retry_count,oe1_0.sent_at,oe1_0.status from outbox_events oe1_0 where oe1_0.status=? order by oe1_0.created_at fetch first ? rows only
+computer_store_core  | Hibernate: select oe1_0.id,oe1_0.created_at,oe1_0.error,oe1_0.event_id,oe1_0.event_type,oe1_0.payload,oe1_0.retry_count,oe1_0.sent_at,oe1_0.status from outbox_events oe1_0 where oe1_0.status=? order by oe1_0.created_at fetch first ? rows only
+computer_store_core  | Hibernate: select oe1_0.id,oe1_0.created_at,oe1_0.error,oe1_0.event_id,oe1_0.event_type,oe1_0.payload,oe1_0.retry_count,oe1_0.sent_at,oe1_0.status from outbox_events oe1_0 where oe1_0.status=? order by oe1_0.created_at fetch first ? rows only
+computer_store_core  | Hibernate: select oe1_0.id,oe1_0.created_at,oe1_0.error,oe1_0.event_id,oe1_0.event_type,oe1_0.payload,oe1_0.retry_count,oe1_0.sent_at,oe1_0.status from outbox_events oe1_0 where oe1_0.status=? order by oe1_0.created_at fetch first ? rows only
+computer_store_core  | Hibernate: select oe1_0.id,oe1_0.created_at,oe1_0.error,oe1_0.event_id,oe1_0.event_type,oe1_0.payload,oe1_0.retry_count,oe1_0.sent_at,oe1_0.status from outbox_events oe1_0 where oe1_0.status=? order by oe1_0.created_at fetch first ? rows only
+computer_store_core  | Hibernate: select oe1_0.id,oe1_0.created_at,oe1_0.error,oe1_0.event_id,oe1_0.event_type,oe1_0.payload,oe1_0.retry_count,oe1_0.sent_at,oe1_0.status from outbox_events oe1_0 where oe1_0.status=? order by oe1_0.created_at fetch first ? rows only
+computer_store_core  | Hibernate: select oe1_0.id,oe1_0.created_at,oe1_0.error,oe1_0.event_id,oe1_0.event_type,oe1_0.payload,oe1_0.retry_count,oe1_0.sent_at,oe1_0.status from outbox_events oe1_0 where oe1_0.status=? order by oe1_0.created_at fetch first ? rows only
+computer_store_core  | Hibernate: select oe1_0.id,oe1_0.created_at,oe1_0.error,oe1_0.event_id,oe1_0.event_type,oe1_0.payload,oe1_0.retry_count,oe1_0.sent_at,oe1_0.status from outbox_events oe1_0 where oe1_0.status=? order by oe1_0.created_at fetch first ? rows only
+computer_store_core  | Hibernate: select oe1_0.id,oe1_0.created_at,oe1_0.error,oe1_0.event_id,oe1_0.event_type,oe1_0.payload,oe1_0.retry_count,oe1_0.sent_at,oe1_0.status from outbox_events oe1_0 where oe1_0.status=? order by oe1_0.created_at fetch first ? rows only
+computer_store_core  | Hibernate: select oe1_0.id,oe1_0.created_at,oe1_0.error,oe1_0.event_id,oe1_0.event_type,oe1_0.payload,oe1_0.retry_count,oe1_0.sent_at,oe1_0.status from outbox_events oe1_0 where oe1_0.status=? order by oe1_0.created_at fetch first ? rows only
+computer_store_core  | Hibernate: select oe1_0.id,oe1_0.created_at,oe1_0.error,oe1_0.event_id,oe1_0.event_type,oe1_0.payload,oe1_0.retry_count,oe1_0.sent_at,oe1_0.status from outbox_events oe1_0 where oe1_0.status=? order by oe1_0.created_at fetch first ? rows only
+computer_store_core  | Hibernate: select oe1_0.id,oe1_0.created_at,oe1_0.error,oe1_0.event_id,oe1_0.event_type,oe1_0.payload,oe1_0.retry_count,oe1_0.sent_at,oe1_0.status from outbox_events oe1_0 where oe1_0.status=? order by oe1_0.created_at fetch first ? rows only
+computer_store_core  | Hibernate: select oe1_0.id,oe1_0.created_at,oe1_0.error,oe1_0.event_id,oe1_0.event_type,oe1_0.payload,oe1_0.retry_count,oe1_0.sent_at,oe1_0.status from outbox_events oe1_0 where oe1_0.status=? order by oe1_0.created_at fetch first ? rows only
+computer_store_core  | Hibernate: select oe1_0.id,oe1_0.created_at,oe1_0.error,oe1_0.event_id,oe1_0.event_type,oe1_0.payload,oe1_0.retry_count,oe1_0.sent_at,oe1_0.status from outbox_events oe1_0 where oe1_0.status=? order by oe1_0.created_at fetch first ? rows only
+computer_store_core  | Hibernate: select oe1_0.id,oe1_0.created_at,oe1_0.error,oe1_0.event_id,oe1_0.event_type,oe1_0.payload,oe1_0.retry_count,oe1_0.sent_at,oe1_0.status from outbox_events oe1_0 where oe1_0.status=? order by oe1_0.created_at fetch first ? rows only
+computer_store_core  | Hibernate: select oe1_0.id,oe1_0.created_at,oe1_0.error,oe1_0.event_id,oe1_0.event_type,oe1_0.payload,oe1_0.retry_count,oe1_0.sent_at,oe1_0.status from outbox_events oe1_0 where oe1_0.status=? order by oe1_0.created_at fetch first ? rows only

@@ -51,6 +51,17 @@ public ResponseEntity<List<Map<String, Object>>> getPriceHistory(@PathVariable L
         return ResponseEntity.ok(reportService.exportComputersReport());
     }
 
+    @GetMapping("/files")
+public ResponseEntity<List<Map<String, Object>>> listFiles() {
+    log.info(">>> report-service: получен запрос GET /internal/reports/files");
+    try {
+        return ResponseEntity.ok(minioService.listFiles());
+    } catch (Exception e) {
+        log.error("Ошибка листинга файлов из MinIO", e);
+        throw new RuntimeException("Не удалось получить список файлов", e);
+    }
+}
+
     // === НОВОЕ: presigned URL ===
 
     @GetMapping("/files/{*objectName}")

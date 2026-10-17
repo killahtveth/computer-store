@@ -59,3 +59,11 @@ curl -X POST "http://localhost:8080/api/reports/export/full"
 docker exec computer_store_db psql -U postgres -d computer_store -c "SELECT saga_id, status, current_step, object_name, error FROM saga_instances ORDER BY id DESC LIMIT 5;"
 docker compose start notification-service
 docker exec computer_store_db psql -U postgres -d computer_store -c "SELECT saga_id, status, current_step, object_name, error FROM saga_instances ORDER BY id DESC LIMIT 5;"
+
+lab6 demo
+curl -i http://localhost:8080/api/reports/files/async
+лог core service
+curl -i http://localhost:8080/api/reports/files/async/computers-report-fcd38781-19c5-4a60-ad0a-007f27863886.csv
+curl -i "http://localhost:8080/api/reports/files/batch?names=computers-report-fcd38781-19c5-4a60-ad0a-007f27863886.csv,computers-report-bf0e2d82-fc98-424b-a125-9206bab6eddf.csv,computers-report-1c1e725d-1e5e-4438-91aa-7431f9c3f1c4.csv"
+логи core service
+curl -i "http://localhost:8080/api/reports/files/benchmark?parallel=10"

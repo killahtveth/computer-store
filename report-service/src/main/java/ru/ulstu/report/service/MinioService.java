@@ -2,6 +2,7 @@ package ru.ulstu.report.service;
 
 import io.minio.*;
 import io.minio.http.Method;
+import io.minio.messages.Item;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -9,6 +10,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import jakarta.annotation.PostConstruct;
@@ -103,4 +108,26 @@ public void removeFile(String objectName) throws Exception {
     log.info("Файл {} удалён из MinIO", objectName);
 }
 
-}
+public List<Map<String, Object>> listFiles() throws Exception {
+    List<Map<String, Object>> result = new ArrayList<>();
+
+    Iterable<Result<Item>> items = minioClient.listObjects(
+            ListObjectsArgs.builder()
+                    .bucket(bucketName)
+                    .recursive(true)
+                    .build()
+    );
+    for (Result<Item> r : items) {
+        Item item = r.get();
+        Map<String, Object> file = new LinkedHashMap<>();
+        file.put("name", item.objectName());
+        file.put("size", item.size());
+        file.put("lastModified", item.lastModified() != null
+                ? item.lastModified().toString()
+                : null);
+        result.add(file);
+    }
+
+    return result;
+
+}}
