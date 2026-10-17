@@ -160,6 +160,7 @@ public Jackson2JsonMessageConverter jackson2JsonMessageConverter() {
     Jackson2JsonMessageConverter converter = new Jackson2JsonMessageConverter();
     DefaultJackson2JavaTypeMapper typeMapper = new DefaultJackson2JavaTypeMapper();
     typeMapper.setTypePrecedence(DefaultJackson2JavaTypeMapper.TypePrecedence.INFERRED);
+    typeMapper.setTrustedPackages("*");
     converter.setJavaTypeMapper(typeMapper);
     return converter;
 }

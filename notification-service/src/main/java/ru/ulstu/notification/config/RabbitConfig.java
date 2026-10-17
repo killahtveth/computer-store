@@ -1,6 +1,12 @@
 package ru.ulstu.notification.config;
 
-import org.springframework.amqp.core.*;
+import org.springframework.amqp.core.Binding;
+import org.springframework.amqp.core.BindingBuilder;
+import org.springframework.amqp.core.DirectExchange;
+import org.springframework.amqp.core.ExchangeBuilder;
+import org.springframework.amqp.core.Queue;
+import org.springframework.amqp.core.QueueBuilder;
+import org.springframework.amqp.core.TopicExchange;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.support.converter.DefaultJackson2JavaTypeMapper;
@@ -12,17 +18,14 @@ import org.springframework.context.annotation.Configuration;
 public class RabbitConfig {
 
     public static final String SAGA_EXCHANGE = "saga.exchange";
-    public static final String DLX = "saga.dlx";
-    public static final String DLQ = "saga.dlq";
+    public static final String SAGA_DLX = "saga.dlx";
+    public static final String SAGA_DLQ = "saga.dlq";
 
-    // Команда от orchestrator → notification-service
     public static final String NOTIFY_COMMAND_QUEUE = "notification.send.command.queue";
     public static final String NOTIFY_COMMAND_KEY   = "notification.send.command";
 
-    // Ответ от notification-service → orchestrator
-    public static final String NOTIFY_RESULT_QUEUE = "saga.notify.result.queue";
-    public static final String NOTIFY_SENT_KEY     = "notification.sent";
-    public static final String NOTIFY_FAILED_KEY   = "notification.failed";
+    public static final String NOTIFICATION_SENT_KEY   = "notification.sent";
+    public static final String NOTIFICATION_FAILED_KEY = "notification.failed";
 
     @Bean
     public TopicExchange sagaExchange() {
@@ -31,28 +34,18 @@ public class RabbitConfig {
 
     @Bean
     public DirectExchange sagaDlx() {
-        return ExchangeBuilder.directExchange(DLX).durable(true).build();
+        return ExchangeBuilder.directExchange(SAGA_DLX).durable(true).build();
     }
 
     @Bean
     public Queue notifyCommandQueue() {
         return QueueBuilder.durable(NOTIFY_COMMAND_QUEUE)
-                .deadLetterExchange(DLX)
-                .deadLetterRoutingKey(DLQ)
-                .build();
-    }
-
-    @Bean
-    public Queue notifyResultQueue() {
-        return QueueBuilder.durable(NOTIFY_RESULT_QUEUE)
-                .deadLetterExchange(DLX)
-                .deadLetterRoutingKey(DLQ)
-                .build();
+                .deadLetterExchange(SAGA_DLX).deadLetterRoutingKey(SAGA_DLQ).build();
     }
 
     @Bean
     public Queue sagaDlq() {
-        return QueueBuilder.durable(DLQ).build();
+        return QueueBuilder.durable(SAGA_DLQ).build();
     }
 
     @Bean
@@ -62,30 +55,19 @@ public class RabbitConfig {
     }
 
     @Bean
-    public Binding notifySentBinding() {
-        return BindingBuilder.bind(notifyResultQueue())
-                .to(sagaExchange()).with(NOTIFY_SENT_KEY);
-    }
-
-    @Bean
-    public Binding notifyFailedBinding() {
-        return BindingBuilder.bind(notifyResultQueue())
-                .to(sagaExchange()).with(NOTIFY_FAILED_KEY);
-    }
-
-    @Bean
     public Binding sagaDlqBinding() {
-        return BindingBuilder.bind(sagaDlq()).to(sagaDlx()).with(DLQ);
+        return BindingBuilder.bind(sagaDlq()).to(sagaDlx()).with(SAGA_DLQ);
     }
 
     @Bean
-public Jackson2JsonMessageConverter jackson2JsonMessageConverter() {
-    Jackson2JsonMessageConverter converter = new Jackson2JsonMessageConverter();
-    DefaultJackson2JavaTypeMapper typeMapper = new DefaultJackson2JavaTypeMapper();
-    typeMapper.setTypePrecedence(DefaultJackson2JavaTypeMapper.TypePrecedence.INFERRED);
-    converter.setJavaTypeMapper(typeMapper);
-    return converter;
-}
+    public Jackson2JsonMessageConverter jackson2JsonMessageConverter() {
+        Jackson2JsonMessageConverter converter = new Jackson2JsonMessageConverter();
+        DefaultJackson2JavaTypeMapper typeMapper = new DefaultJackson2JavaTypeMapper();
+        typeMapper.setTypePrecedence(DefaultJackson2JavaTypeMapper.TypePrecedence.INFERRED);
+        typeMapper.setTrustedPackages("*");
+        converter.setJavaTypeMapper(typeMapper);
+        return converter;
+    }
 
     @Bean
     public RabbitTemplate rabbitTemplate(ConnectionFactory connectionFactory,

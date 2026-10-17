@@ -15,10 +15,6 @@ public class NotificationSenderService {
 
     private final NotificationRepository notificationRepository;
 
-    /**
-     * Сохраняет уведомление. Если requestId начинается с "fail-"
-     * — симулирует ошибку (для демонстрации компенсации).
-     */
     public Notification send(String sagaId, String requestId, String message) {
         if (requestId != null && requestId.startsWith("fail-")) {
             throw new IllegalStateException("Симуляция сбоя отправки уведомления: " + requestId);

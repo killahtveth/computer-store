@@ -1,0 +1,40 @@
+report-service-1  | 2026-10-17 04:25:47.846 [DiscoveryClient-CacheRefreshExecutor-0] DEBUG o.s.web.client.RestTemplate - Response 200 OK
+report-service-1  | 2026-10-17 04:25:47.846 [DiscoveryClient-CacheRefreshExecutor-0] DEBUG o.s.web.client.RestTemplate - Reading to [org.springframework.cloud.netflix.eureka.http.EurekaApplications]
+report-service-1  | 2026-10-17 04:25:52.840 [DiscoveryClient-HeartbeatExecutor-0] DEBUG o.s.web.client.RestTemplate - HTTP PUT http://eureka-server:8761/eureka/apps/REPORT-SERVICE/report-service:2b8a0277f007:8082?status=UP&lastDirtyTimestamp=1792211067661
+report-service-1  | 2026-10-17 04:25:52.840 [DiscoveryClient-HeartbeatExecutor-0] DEBUG o.s.web.client.RestTemplate - Accept=[application/json, application/*+json]
+report-service-1  | 2026-10-17 04:25:52.845 [DiscoveryClient-HeartbeatExecutor-0] DEBUG o.s.web.client.RestTemplate - Response 200 OK
+report-service-1  | 2026-10-17 04:25:52.848 [DiscoveryClient-CacheRefreshExecutor-0] DEBUG o.s.web.client.RestTemplate - HTTP GET http://eureka-server:8761/eureka/apps/delta
+report-service-1  | 2026-10-17 04:25:52.848 [DiscoveryClient-CacheRefreshExecutor-0] DEBUG o.s.web.client.RestTemplate - Accept=[application/json, application/*+json]
+report-service-1  | 2026-10-17 04:25:52.853 [DiscoveryClient-CacheRefreshExecutor-0] DEBUG o.s.web.client.RestTemplate - Response 200 OK
+report-service-1  | 2026-10-17 04:25:52.854 [DiscoveryClient-CacheRefreshExecutor-0] DEBUG o.s.web.client.RestTemplate - Reading to [org.springframework.cloud.netflix.eureka.http.EurekaApplications]
+report-service-1  | 2026-10-17 04:25:53.780 [http-nio-8082-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - GET "/actuator/health", parameters={}
+report-service-1  | 2026-10-17 04:25:53.781 [http-nio-8082-exec-9] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/octet-stream" to []
+report-service-1  | 2026-10-17 04:25:53.783 [http-nio-8082-exec-9] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/vnd.spring-boot.actuator.v3+json', given [*/*] and supported [application/vnd.spring-boot.actuator.v3+json, application/vnd.spring-boot.actuator.v2+json, application/json]
+report-service-1  | 2026-10-17 04:25:53.783 [http-nio-8082-exec-9] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [org.springframework.boot.actuate.health.SystemHealth@379d6131]
+report-service-1  | 2026-10-17 04:25:53.786 [http-nio-8082-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+report-service-1  | 2026-10-17 04:25:57.847 [DiscoveryClient-HeartbeatExecutor-0] DEBUG o.s.web.client.RestTemplate - HTTP PUT http://eureka-server:8761/eureka/apps/REPORT-SERVICE/report-service:2b8a0277f007:8082?status=UP&lastDirtyTimestamp=1792211067661
+report-service-1  | 2026-10-17 04:25:57.847 [DiscoveryClient-HeartbeatExecutor-0] DEBUG o.s.web.client.RestTemplate - Accept=[application/json, application/*+json]
+report-service-1  | 2026-10-17 04:25:57.854 [DiscoveryClient-HeartbeatExecutor-0] DEBUG o.s.web.client.RestTemplate - Response 200 OK
+report-service-1  | 2026-10-17 04:25:57.857 [DiscoveryClient-CacheRefreshExecutor-0] DEBUG o.s.web.client.RestTemplate - HTTP GET http://eureka-server:8761/eureka/apps/delta
+report-service-1  | 2026-10-17 04:25:57.857 [DiscoveryClient-CacheRefreshExecutor-0] DEBUG o.s.web.client.RestTemplate - Accept=[application/json, application/*+json]
+report-service-1  | 2026-10-17 04:25:57.861 [DiscoveryClient-CacheRefreshExecutor-0] DEBUG o.s.web.client.RestTemplate - Response 200 OK
+report-service-1  | 2026-10-17 04:25:57.861 [DiscoveryClient-CacheRefreshExecutor-0] DEBUG o.s.web.client.RestTemplate - Reading to [org.springframework.cloud.netflix.eureka.http.EurekaApplications]
+report-service-1  | 2026-10-17 04:26:02.855 [DiscoveryClient-HeartbeatExecutor-0] DEBUG o.s.web.client.RestTemplate - HTTP PUT http://eureka-server:8761/eureka/apps/REPORT-SERVICE/report-service:2b8a0277f007:8082?status=UP&lastDirtyTimestamp=1792211067661
+report-service-1  | 2026-10-17 04:26:02.855 [DiscoveryClient-HeartbeatExecutor-0] DEBUG o.s.web.client.RestTemplate - Accept=[application/json, application/*+json]
+report-service-1  | 2026-10-17 04:26:02.862 [DiscoveryClient-HeartbeatExecutor-0] DEBUG o.s.web.client.RestTemplate - Response 200 OK
+report-service-1  | 2026-10-17 04:26:02.864 [DiscoveryClient-CacheRefreshExecutor-0] DEBUG o.s.web.client.RestTemplate - HTTP GET http://eureka-server:8761/eureka/apps/delta
+report-service-1  | 2026-10-17 04:26:02.865 [DiscoveryClient-CacheRefreshExecutor-0] DEBUG o.s.web.client.RestTemplate - Accept=[application/json, application/*+json]
+report-service-1  | 2026-10-17 04:26:02.869 [DiscoveryClient-CacheRefreshExecutor-0] DEBUG o.s.web.client.RestTemplate - Response 200 OK
+report-service-1  | 2026-10-17 04:26:02.870 [DiscoveryClient-CacheRefreshExecutor-0] DEBUG o.s.web.client.RestTemplate - Reading to [org.springframework.cloud.netflix.eureka.http.EurekaApplications]
+report-service-1  | 2026-10-17 04:26:03.856 [http-nio-8082-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - GET "/actuator/health", parameters={}
+report-service-1  | 2026-10-17 04:26:03.857 [http-nio-8082-exec-10] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/octet-stream" to []
+report-service-1  | 2026-10-17 04:26:03.859 [http-nio-8082-exec-10] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/vnd.spring-boot.actuator.v3+json', given [*/*] and supported [application/vnd.spring-boot.actuator.v3+json, application/vnd.spring-boot.actuator.v2+json, application/json]
+report-service-1  | 2026-10-17 04:26:03.859 [http-nio-8082-exec-10] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [org.springframework.boot.actuate.health.SystemHealth@4ac2c85a]
+report-service-1  | 2026-10-17 04:26:03.861 [http-nio-8082-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+report-service-1  | 2026-10-17 04:26:07.864 [DiscoveryClient-HeartbeatExecutor-0] DEBUG o.s.web.client.RestTemplate - HTTP PUT http://eureka-server:8761/eureka/apps/REPORT-SERVICE/report-service:2b8a0277f007:8082?status=UP&lastDirtyTimestamp=1792211067661
+report-service-1  | 2026-10-17 04:26:07.865 [DiscoveryClient-HeartbeatExecutor-0] DEBUG o.s.web.client.RestTemplate - Accept=[application/json, application/*+json]
+report-service-1  | 2026-10-17 04:26:07.871 [DiscoveryClient-HeartbeatExecutor-0] DEBUG o.s.web.client.RestTemplate - Response 200 OK
+report-service-1  | 2026-10-17 04:26:07.874 [DiscoveryClient-CacheRefreshExecutor-0] DEBUG o.s.web.client.RestTemplate - HTTP GET http://eureka-server:8761/eureka/apps/delta
+report-service-1  | 2026-10-17 04:26:07.875 [DiscoveryClient-CacheRefreshExecutor-0] DEBUG o.s.web.client.RestTemplate - Accept=[application/json, application/*+json]
+report-service-1  | 2026-10-17 04:26:07.880 [DiscoveryClient-CacheRefreshExecutor-0] DEBUG o.s.web.client.RestTemplate - Response 200 OK
+report-service-1  | 2026-10-17 04:26:07.881 [DiscoveryClient-CacheRefreshExecutor-0] DEBUG o.s.web.client.RestTemplate - Reading to [org.springframework.cloud.netflix.eureka.http.EurekaApplications]

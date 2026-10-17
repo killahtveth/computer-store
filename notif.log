@@ -1,0 +1,100 @@
+notification-service-1  | 	at 	at java.base/sun.nio.ch.Net.pollConnectNow(Unknown Source)
+notification-service-1  | 	at 	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(Unknown Source)
+notification-service-1  | 	at 	at java.base/sun.nio.ch.NioSocketImpl.connect(Unknown Source)
+notification-service-1  | 	at 	at java.base/java.net.SocksSocketImpl.connect(Unknown Source)
+notification-service-1  | 	at 	at java.base/java.net.Socket.connect(Unknown Source)
+notification-service-1  | 	at 	at net.logstash.logback.appender.AbstractLogstashTcpSocketAppender$TcpSendingEventHandler.openSocket(AbstractLogstashTcpSocketAppender.java:765)
+notification-service-1  | 	at 	at net.logstash.logback.appender.AbstractLogstashTcpSocketAppender$TcpSendingEventHandler.onStart(AbstractLogstashTcpSocketAppender.java:691)
+notification-service-1  | 	at 	at net.logstash.logback.appender.AsyncDisruptorAppender$EventClearingEventHandler.onStart(AsyncDisruptorAppender.java:382)
+notification-service-1  | 	at 	at net.logstash.logback.encoder.com.lmax.disruptor.BatchEventProcessor.notifyStart(BatchEventProcessor.java:224)
+notification-service-1  | 	at 	at net.logstash.logback.encoder.com.lmax.disruptor.BatchEventProcessor.run(BatchEventProcessor.java:120)
+notification-service-1  | 	at 	at java.base/java.lang.Thread.run(Unknown Source)
+notification-service-1  | 14:22:31,835 |-WARN in net.logstash.logback.appender.LogstashTcpSocketAppender[LOGSTASH] - Log destination logstash/<unresolved>:5000: Waiting 29818ms before attempting reconnection.
+notification-service-1  | 2026-10-16 14:22:32.736 [main] INFO  r.u.n.NotificationServiceApplication - Starting NotificationServiceApplication v0.0.1-SNAPSHOT using Java 17.0.20.1 with PID 1 (/app/app.jar started by root in /app)
+notification-service-1  | 2026-10-16 14:22:32.768 [main] INFO  r.u.n.NotificationServiceApplication - No active profile set, falling back to 1 default profile: "default"
+notification-service-1  | 2026-10-16 14:22:39.140 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+notification-service-1  | 2026-10-16 14:22:40.692 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 1496 ms. Found 1 JPA repository interface.
+notification-service-1  | 2026-10-16 14:22:43.106 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=43fdf694-d615-381b-bc11-cd954d9b7d4a
+notification-service-1  | 2026-10-16 14:22:45.676 [main] WARN  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.cloud.client.loadbalancer.LoadBalancerAutoConfiguration$DeferringLoadBalancerInterceptorConfig' of type [org.springframework.cloud.client.loadbalancer.LoadBalancerAutoConfiguration$DeferringLoadBalancerInterceptorConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). The currently created BeanPostProcessor [lbRestClientPostProcessor] is declared through a non-static factory method on that class; consider declaring it as static instead.
+notification-service-1  | 2026-10-16 14:22:45.713 [main] WARN  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'deferringLoadBalancerInterceptor' of type [org.springframework.cloud.client.loadbalancer.DeferringLoadBalancerInterceptor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [lbRestClientPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
+notification-service-1  | 2026-10-16 14:22:48.942 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8084 (http)
+notification-service-1  | 2026-10-16 14:22:49.074 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+notification-service-1  | 2026-10-16 14:22:49.081 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.20]
+notification-service-1  | 2026-10-16 14:22:49.367 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+notification-service-1  | 2026-10-16 14:22:49.370 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 16283 ms
+notification-service-1  | 2026-10-16 14:22:51.641 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+notification-service-1  | 2026-10-16 14:22:52.778 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@1e3566e
+notification-service-1  | 2026-10-16 14:22:52.796 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+notification-service-1  | 2026-10-16 14:22:53.635 [main] INFO  liquibase.database - Set default schema name to public
+notification-service-1  | 2026-10-16 14:22:58.474 [main] INFO  liquibase.changelog - Reading from public.databasechangelog
+notification-service-1  | Database is up to date, no changesets to execute
+notification-service-1  | 2026-10-16 14:22:58.690 [main] INFO  liquibase.changelog - Reading from public.databasechangelog
+notification-service-1  | 2026-10-16 14:22:58.709 [main] INFO  liquibase.util - UPDATE SUMMARY
+notification-service-1  | 2026-10-16 14:22:58.710 [main] INFO  liquibase.util - Run:                          0
+notification-service-1  | 2026-10-16 14:22:58.710 [main] INFO  liquibase.util - Previously run:               1
+notification-service-1  | 2026-10-16 14:22:58.710 [main] INFO  liquibase.util - Filtered out:                 0
+notification-service-1  | 2026-10-16 14:22:58.710 [main] INFO  liquibase.util - -------------------------------
+notification-service-1  | 2026-10-16 14:22:58.710 [main] INFO  liquibase.util - Total change sets:            1
+notification-service-1  | 2026-10-16 14:22:58.710 [main] INFO  liquibase.util - Update summary generated
+notification-service-1  | 2026-10-16 14:22:58.861 [main] INFO  liquibase.lockservice - Successfully released change log lock
+notification-service-1  | 2026-10-16 14:22:58.884 [main] INFO  liquibase.command - Command execution complete
+notification-service-1  | 2026-10-16 14:22:59.460 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+notification-service-1  | 2026-10-16 14:22:59.804 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.4.Final
+notification-service-1  | 2026-10-16 14:23:00.044 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+notification-service-1  | 2026-10-16 14:23:02.237 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+notification-service-1  | 2026-10-16 14:23:08.382 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+notification-service-1  | 2026-10-16 14:23:08.496 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+notification-service-1  | 2026-10-16 14:23:11.334 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+notification-service-1  | 2026-10-16 14:23:14.624 [main] INFO  o.s.c.n.e.c.DiscoveryClientOptionalArgsConfiguration - Eureka HTTP Client uses RestTemplate.
+notification-service-1  | 2026-10-16 14:23:14.903 [main] WARN  o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+notification-service-1  | 2026-10-16 14:23:14.954 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 2 endpoint(s) beneath base path '/actuator'
+notification-service-1  | 2026-10-16 14:23:15.336 [main] INFO  o.s.c.n.eureka.InstanceInfoFactory - Setting initial instance status as: STARTING
+notification-service-1  | 2026-10-16 14:23:15.888 [main] INFO  c.netflix.discovery.DiscoveryClient - Initializing Eureka in region us-east-1
+notification-service-1  | 2026-10-16 14:23:15.925 [main] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+notification-service-1  | 2026-10-16 14:23:16.181 [main] INFO  c.netflix.discovery.DiscoveryClient - Disable delta property : false
+notification-service-1  | 2026-10-16 14:23:16.190 [main] INFO  c.netflix.discovery.DiscoveryClient - Single vip registry refresh property : null
+notification-service-1  | 2026-10-16 14:23:16.190 [main] INFO  c.netflix.discovery.DiscoveryClient - Force full registry fetch : false
+notification-service-1  | 2026-10-16 14:23:16.190 [main] INFO  c.netflix.discovery.DiscoveryClient - Application is null : false
+notification-service-1  | 2026-10-16 14:23:16.191 [main] INFO  c.netflix.discovery.DiscoveryClient - Registered Applications size is zero : true
+notification-service-1  | 2026-10-16 14:23:16.191 [main] INFO  c.netflix.discovery.DiscoveryClient - Application version is -1: true
+notification-service-1  | 2026-10-16 14:23:16.196 [main] INFO  c.netflix.discovery.DiscoveryClient - Getting all instance registry info from the eureka server
+notification-service-1  | 2026-10-16 14:23:18.076 [main] INFO  c.netflix.discovery.DiscoveryClient - The response status is 200
+notification-service-1  | 2026-10-16 14:23:18.086 [main] INFO  c.netflix.discovery.DiscoveryClient - Starting heartbeat executor: renew interval is: 5
+notification-service-1  | 2026-10-16 14:23:18.097 [main] INFO  c.n.discovery.InstanceInfoReplicator - InstanceInfoReplicator onDemand update allowed rate per min is 4
+notification-service-1  | 2026-10-16 14:23:18.113 [main] INFO  c.netflix.discovery.DiscoveryClient - Discovery Client initialized at timestamp 1792160598111 with initial instances count: 0
+notification-service-1  | 2026-10-16 14:23:18.136 [main] INFO  o.s.c.n.e.s.EurekaServiceRegistry - Registering application NOTIFICATION-SERVICE with eureka with status UP
+notification-service-1  | 2026-10-16 14:23:18.142 [main] INFO  c.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1792160598141, current=UP, previous=STARTING]
+notification-service-1  | 2026-10-16 14:23:18.153 [DiscoveryClient-InstanceInfoReplicator-0] INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_NOTIFICATION-SERVICE/notification-service:cd8acb622797:8084: registering service...
+notification-service-1  | 2026-10-16 14:23:18.467 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8084 (http) with context path ''
+notification-service-1  | 2026-10-16 14:23:18.501 [DiscoveryClient-InstanceInfoReplicator-0] INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_NOTIFICATION-SERVICE/notification-service:cd8acb622797:8084 - registration status: 204
+notification-service-1  | 2026-10-16 14:23:18.505 [main] INFO  o.s.c.n.e.s.EurekaAutoServiceRegistration - Updating port to 8084
+notification-service-1  | 2026-10-16 14:23:18.525 [main] INFO  o.s.a.r.c.CachingConnectionFactory - Attempting to connect to: [rabbitmq:5672]
+notification-service-1  | 2026-10-16 14:23:18.839 [main] INFO  o.s.a.r.c.CachingConnectionFactory - Created new connection: rabbitConnectionFactory#44d5a0a8:0/SimpleConnection@1b232da1 [delegate=amqp://computerstore@172.19.0.3:5672/, localPort=39794]
+notification-service-1  | 2026-10-16 14:23:19.174 [main] INFO  r.u.n.NotificationServiceApplication - Started NotificationServiceApplication in 54.253 seconds (process running for 57.47)
+notification-service-1  | 2026-10-16 14:23:23.083 [DiscoveryClient-CacheRefreshExecutor-0] INFO  c.netflix.discovery.DiscoveryClient - Disable delta property : false
+notification-service-1  | 2026-10-16 14:23:23.083 [DiscoveryClient-CacheRefreshExecutor-0] INFO  c.netflix.discovery.DiscoveryClient - Single vip registry refresh property : null
+notification-service-1  | 2026-10-16 14:23:23.083 [DiscoveryClient-CacheRefreshExecutor-0] INFO  c.netflix.discovery.DiscoveryClient - Force full registry fetch : false
+notification-service-1  | 2026-10-16 14:23:23.083 [DiscoveryClient-CacheRefreshExecutor-0] INFO  c.netflix.discovery.DiscoveryClient - Application is null : false
+notification-service-1  | 2026-10-16 14:23:23.083 [DiscoveryClient-CacheRefreshExecutor-0] INFO  c.netflix.discovery.DiscoveryClient - Registered Applications size is zero : true
+notification-service-1  | 2026-10-16 14:23:23.083 [DiscoveryClient-CacheRefreshExecutor-0] INFO  c.netflix.discovery.DiscoveryClient - Application version is -1: false
+notification-service-1  | 2026-10-16 14:23:23.083 [DiscoveryClient-CacheRefreshExecutor-0] INFO  c.netflix.discovery.DiscoveryClient - Getting all instance registry info from the eureka server
+notification-service-1  | 2026-10-16 14:23:23.102 [DiscoveryClient-CacheRefreshExecutor-0] INFO  c.netflix.discovery.DiscoveryClient - The response status is 200
+notification-service-1  | 2026-10-16 14:23:24.788 [http-nio-8084-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+notification-service-1  | 2026-10-16 14:23:24.788 [http-nio-8084-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+notification-service-1  | 2026-10-16 14:23:24.792 [http-nio-8084-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 4 ms
+notification-service-1  | 2026-10-16 14:23:28.105 [DiscoveryClient-CacheRefreshExecutor-0] INFO  c.netflix.discovery.DiscoveryClient - Disable delta property : false
+notification-service-1  | 2026-10-16 14:23:28.105 [DiscoveryClient-CacheRefreshExecutor-0] INFO  c.netflix.discovery.DiscoveryClient - Single vip registry refresh property : null
+notification-service-1  | 2026-10-16 14:23:28.105 [DiscoveryClient-CacheRefreshExecutor-0] INFO  c.netflix.discovery.DiscoveryClient - Force full registry fetch : false
+notification-service-1  | 2026-10-16 14:23:28.105 [DiscoveryClient-CacheRefreshExecutor-0] INFO  c.netflix.discovery.DiscoveryClient - Application is null : false
+notification-service-1  | 2026-10-16 14:23:28.105 [DiscoveryClient-CacheRefreshExecutor-0] INFO  c.netflix.discovery.DiscoveryClient - Registered Applications size is zero : true
+notification-service-1  | 2026-10-16 14:23:28.105 [DiscoveryClient-CacheRefreshExecutor-0] INFO  c.netflix.discovery.DiscoveryClient - Application version is -1: false
+notification-service-1  | 2026-10-16 14:23:28.105 [DiscoveryClient-CacheRefreshExecutor-0] INFO  c.netflix.discovery.DiscoveryClient - Getting all instance registry info from the eureka server
+notification-service-1  | 2026-10-16 14:23:28.120 [DiscoveryClient-CacheRefreshExecutor-0] INFO  c.netflix.discovery.DiscoveryClient - The response status is 200
+notification-service-1  | 2026-10-16 14:23:33.119 [DiscoveryClient-CacheRefreshExecutor-0] INFO  c.netflix.discovery.DiscoveryClient - Disable delta property : false
+notification-service-1  | 2026-10-16 14:23:33.120 [DiscoveryClient-CacheRefreshExecutor-0] INFO  c.netflix.discovery.DiscoveryClient - Single vip registry refresh property : null
+notification-service-1  | 2026-10-16 14:23:33.120 [DiscoveryClient-CacheRefreshExecutor-0] INFO  c.netflix.discovery.DiscoveryClient - Force full registry fetch : false
+notification-service-1  | 2026-10-16 14:23:33.120 [DiscoveryClient-CacheRefreshExecutor-0] INFO  c.netflix.discovery.DiscoveryClient - Application is null : false
+notification-service-1  | 2026-10-16 14:23:33.120 [DiscoveryClient-CacheRefreshExecutor-0] INFO  c.netflix.discovery.DiscoveryClient - Registered Applications size is zero : true
+notification-service-1  | 2026-10-16 14:23:33.120 [DiscoveryClient-CacheRefreshExecutor-0] INFO  c.netflix.discovery.DiscoveryClient - Application version is -1: false
+notification-service-1  | 2026-10-16 14:23:33.120 [DiscoveryClient-CacheRefreshExecutor-0] INFO  c.netflix.discovery.DiscoveryClient - Getting all instance registry info from the eureka server
+notification-service-1  | 2026-10-16 14:23:33.149 [DiscoveryClient-CacheRefreshExecutor-0] INFO  c.netflix.discovery.DiscoveryClient - The response status is 200

@@ -11,6 +11,8 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.concurrent.TimeUnit;
 
+import jakarta.annotation.PostConstruct;
+
 import io.minio.errors.ErrorResponseException;
 
 @Slf4j
@@ -21,6 +23,24 @@ public class MinioService {
     private final MinioClient minioClient;
     @Value("${minio.bucket-name}")
     private String bucketName;
+
+    @PostConstruct
+public void init() {
+    try {
+        boolean exists = minioClient.bucketExists(
+                BucketExistsArgs.builder().bucket(bucketName).build());
+        if (!exists) {
+            minioClient.makeBucket(
+                    MakeBucketArgs.builder().bucket(bucketName).build());
+            log.info("Bucket {} создан при старте", bucketName);
+        } else {
+            log.info("Bucket {} уже существует", bucketName);
+        }
+    } catch (Exception e) {
+        log.error("Не удалось проверить/создать bucket {}", bucketName, e);
+    }
+}
+
 
     // Метод для загрузки файла
     public String uploadFile(String objectName, byte[] content) throws Exception {
@@ -65,11 +85,22 @@ public class MinioService {
         );
         return true;
     } catch (ErrorResponseException e) {
-        if ("NoSuchKey".equals(e.errorResponse().code())) {
+        String code = e.errorResponse().code();
+        if ("NoSuchKey".equals(code) || "NoSuchBucket".equals(code)) {
             return false;
         }
         throw e;
     }
+}
+
+public void removeFile(String objectName) throws Exception {
+    minioClient.removeObject(
+            RemoveObjectArgs.builder()
+                    .bucket(bucketName)
+                    .object(objectName)
+                    .build()
+    );
+    log.info("Файл {} удалён из MinIO", objectName);
 }
 
 }

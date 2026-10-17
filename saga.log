@@ -1,0 +1,80 @@
+saga-orchestrator-1  | 	at 	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(Unknown Source)
+saga-orchestrator-1  | 	at 	at java.base/sun.nio.ch.NioSocketImpl.connect(Unknown Source)
+saga-orchestrator-1  | 	at 	at java.base/java.net.SocksSocketImpl.connect(Unknown Source)
+saga-orchestrator-1  | 	at 	at java.base/java.net.Socket.connect(Unknown Source)
+saga-orchestrator-1  | 	at 	at net.logstash.logback.appender.AbstractLogstashTcpSocketAppender$TcpSendingEventHandler.openSocket(AbstractLogstashTcpSocketAppender.java:765)
+saga-orchestrator-1  | 	at 	at net.logstash.logback.appender.AbstractLogstashTcpSocketAppender$TcpSendingEventHandler.onStart(AbstractLogstashTcpSocketAppender.java:691)
+saga-orchestrator-1  | 	at 	at net.logstash.logback.appender.AsyncDisruptorAppender$EventClearingEventHandler.onStart(AsyncDisruptorAppender.java:382)
+saga-orchestrator-1  | 	at 	at net.logstash.logback.encoder.com.lmax.disruptor.BatchEventProcessor.notifyStart(BatchEventProcessor.java:224)
+saga-orchestrator-1  | 	at 	at net.logstash.logback.encoder.com.lmax.disruptor.BatchEventProcessor.run(BatchEventProcessor.java:120)
+saga-orchestrator-1  | 	at 	at java.base/java.lang.Thread.run(Unknown Source)
+saga-orchestrator-1  | 04:24:03,989 |-WARN in net.logstash.logback.appender.LogstashTcpSocketAppender[LOGSTASH] - Log destination logstash/<unresolved>:5000: Waiting 29833ms before attempting reconnection.
+saga-orchestrator-1  | 2026-10-17 04:24:04.876 [main] INFO  r.u.saga.SagaOrchestratorApplication - Starting SagaOrchestratorApplication v0.0.1-SNAPSHOT using Java 17.0.20.1 with PID 1 (/app/app.jar started by root in /app)
+saga-orchestrator-1  | 2026-10-17 04:24:04.986 [main] INFO  r.u.saga.SagaOrchestratorApplication - No active profile set, falling back to 1 default profile: "default"
+saga-orchestrator-1  | 2026-10-17 04:24:11.912 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+saga-orchestrator-1  | 2026-10-17 04:24:12.738 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 795 ms. Found 2 JPA repository interfaces.
+saga-orchestrator-1  | 2026-10-17 04:24:14.511 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=7a35433b-2b04-3028-93d8-458aff1ce107
+saga-orchestrator-1  | 2026-10-17 04:24:17.217 [main] WARN  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.cloud.client.loadbalancer.LoadBalancerAutoConfiguration$DeferringLoadBalancerInterceptorConfig' of type [org.springframework.cloud.client.loadbalancer.LoadBalancerAutoConfiguration$DeferringLoadBalancerInterceptorConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). The currently created BeanPostProcessor [lbRestClientPostProcessor] is declared through a non-static factory method on that class; consider declaring it as static instead.
+saga-orchestrator-1  | 2026-10-17 04:24:17.246 [main] WARN  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'deferringLoadBalancerInterceptor' of type [org.springframework.cloud.client.loadbalancer.DeferringLoadBalancerInterceptor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected into a currently created BeanPostProcessor [lbRestClientPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies.
+saga-orchestrator-1  | 2026-10-17 04:24:19.424 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8085 (http)
+saga-orchestrator-1  | 2026-10-17 04:24:19.476 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+saga-orchestrator-1  | 2026-10-17 04:24:19.496 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.20]
+saga-orchestrator-1  | 2026-10-17 04:24:19.822 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+saga-orchestrator-1  | 2026-10-17 04:24:19.843 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 14477 ms
+saga-orchestrator-1  | 2026-10-17 04:24:22.096 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+saga-orchestrator-1  | 2026-10-17 04:24:23.410 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@7296fe0b
+saga-orchestrator-1  | 2026-10-17 04:24:23.414 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+saga-orchestrator-1  | 2026-10-17 04:24:24.546 [main] INFO  liquibase.database - Set default schema name to public
+saga-orchestrator-1  | 2026-10-17 04:24:28.057 [main] INFO  liquibase.changelog - Reading from public.databasechangelog
+saga-orchestrator-1  | Database is up to date, no changesets to execute
+saga-orchestrator-1  | 2026-10-17 04:24:28.456 [main] INFO  liquibase.changelog - Reading from public.databasechangelog
+saga-orchestrator-1  | 2026-10-17 04:24:28.519 [main] INFO  liquibase.util - UPDATE SUMMARY
+saga-orchestrator-1  | 2026-10-17 04:24:28.520 [main] INFO  liquibase.util - Run:                          0
+saga-orchestrator-1  | 2026-10-17 04:24:28.520 [main] INFO  liquibase.util - Previously run:               2
+saga-orchestrator-1  | 2026-10-17 04:24:28.520 [main] INFO  liquibase.util - Filtered out:                 0
+saga-orchestrator-1  | 2026-10-17 04:24:28.520 [main] INFO  liquibase.util - -------------------------------
+saga-orchestrator-1  | 2026-10-17 04:24:28.520 [main] INFO  liquibase.util - Total change sets:            2
+saga-orchestrator-1  | 2026-10-17 04:24:28.520 [main] INFO  liquibase.util - Update summary generated
+saga-orchestrator-1  | 2026-10-17 04:24:28.646 [main] INFO  liquibase.lockservice - Successfully released change log lock
+saga-orchestrator-1  | 2026-10-17 04:24:28.672 [main] INFO  liquibase.command - Command execution complete
+saga-orchestrator-1  | 2026-10-17 04:24:29.299 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+saga-orchestrator-1  | 2026-10-17 04:24:29.764 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.4.Final
+saga-orchestrator-1  | 2026-10-17 04:24:29.979 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+saga-orchestrator-1  | 2026-10-17 04:24:30.966 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+saga-orchestrator-1  | 2026-10-17 04:24:33.615 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+saga-orchestrator-1  | 2026-10-17 04:24:33.705 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+saga-orchestrator-1  | 2026-10-17 04:24:36.101 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+saga-orchestrator-1  | 2026-10-17 04:24:38.942 [main] INFO  o.s.c.n.e.c.DiscoveryClientOptionalArgsConfiguration - Eureka HTTP Client uses RestTemplate.
+saga-orchestrator-1  | 2026-10-17 04:24:39.243 [main] WARN  o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+saga-orchestrator-1  | 2026-10-17 04:24:39.283 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 2 endpoint(s) beneath base path '/actuator'
+saga-orchestrator-1  | 2026-10-17 04:24:39.616 [main] INFO  o.s.c.n.eureka.InstanceInfoFactory - Setting initial instance status as: STARTING
+saga-orchestrator-1  | 2026-10-17 04:24:39.816 [main] INFO  c.netflix.discovery.DiscoveryClient - Initializing Eureka in region us-east-1
+saga-orchestrator-1  | 2026-10-17 04:24:39.831 [main] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+saga-orchestrator-1  | 2026-10-17 04:24:39.902 [main] INFO  c.netflix.discovery.DiscoveryClient - Disable delta property : false
+saga-orchestrator-1  | 2026-10-17 04:24:39.904 [main] INFO  c.netflix.discovery.DiscoveryClient - Single vip registry refresh property : null
+saga-orchestrator-1  | 2026-10-17 04:24:39.907 [main] INFO  c.netflix.discovery.DiscoveryClient - Force full registry fetch : false
+saga-orchestrator-1  | 2026-10-17 04:24:39.908 [main] INFO  c.netflix.discovery.DiscoveryClient - Application is null : false
+saga-orchestrator-1  | 2026-10-17 04:24:39.908 [main] INFO  c.netflix.discovery.DiscoveryClient - Registered Applications size is zero : true
+saga-orchestrator-1  | 2026-10-17 04:24:39.908 [main] INFO  c.netflix.discovery.DiscoveryClient - Application version is -1: true
+saga-orchestrator-1  | 2026-10-17 04:24:39.908 [main] INFO  c.netflix.discovery.DiscoveryClient - Getting all instance registry info from the eureka server
+saga-orchestrator-1  | 2026-10-17 04:24:40.870 [main] INFO  c.netflix.discovery.DiscoveryClient - The response status is 200
+saga-orchestrator-1  | 2026-10-17 04:24:40.878 [main] INFO  c.netflix.discovery.DiscoveryClient - Starting heartbeat executor: renew interval is: 5
+saga-orchestrator-1  | 2026-10-17 04:24:40.884 [main] INFO  c.n.discovery.InstanceInfoReplicator - InstanceInfoReplicator onDemand update allowed rate per min is 4
+saga-orchestrator-1  | 2026-10-17 04:24:40.894 [main] INFO  c.netflix.discovery.DiscoveryClient - Discovery Client initialized at timestamp 1792211080893 with initial instances count: 1
+saga-orchestrator-1  | 2026-10-17 04:24:40.907 [main] INFO  o.s.c.n.e.s.EurekaServiceRegistry - Registering application SAGA-ORCHESTRATOR with eureka with status UP
+saga-orchestrator-1  | 2026-10-17 04:24:40.909 [main] INFO  c.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1792211080909, current=UP, previous=STARTING]
+saga-orchestrator-1  | 2026-10-17 04:24:40.913 [DiscoveryClient-InstanceInfoReplicator-0] INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_SAGA-ORCHESTRATOR/saga-orchestrator:974ca5cf34ab:8085: registering service...
+saga-orchestrator-1  | 2026-10-17 04:24:40.959 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8085 (http) with context path ''
+saga-orchestrator-1  | 2026-10-17 04:24:40.962 [main] INFO  o.s.c.n.e.s.EurekaAutoServiceRegistration - Updating port to 8085
+saga-orchestrator-1  | 2026-10-17 04:24:40.973 [main] INFO  o.s.a.r.c.CachingConnectionFactory - Attempting to connect to: [rabbitmq:5672]
+saga-orchestrator-1  | 2026-10-17 04:24:41.034 [DiscoveryClient-InstanceInfoReplicator-0] INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_SAGA-ORCHESTRATOR/saga-orchestrator:974ca5cf34ab:8085 - registration status: 204
+saga-orchestrator-1  | 2026-10-17 04:24:41.163 [main] INFO  o.s.a.r.c.CachingConnectionFactory - Created new connection: rabbitConnectionFactory#33c9910e:0/SimpleConnection@4861df70 [delegate=amqp://computerstore@172.18.0.5:5672/, localPort=38032]
+saga-orchestrator-1  | 2026-10-17 04:24:41.549 [main] INFO  r.u.saga.SagaOrchestratorApplication - Started SagaOrchestratorApplication in 42.653 seconds (process running for 45.496)
+saga-orchestrator-1  | 2026-10-17 04:24:48.024 [http-nio-8085-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+saga-orchestrator-1  | 2026-10-17 04:24:48.025 [http-nio-8085-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+saga-orchestrator-1  | 2026-10-17 04:24:48.031 [http-nio-8085-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 5 ms
+saga-orchestrator-1  | 2026-10-17 04:25:09.050 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] INFO  r.u.saga.listener.SagaStartListener - >>> Получена команда saga.start: sagaId=50f64683-84a8-444b-9f97-5b8618306292, requestId=cfe6080b-0b8c-4c42-826a-19e062a779f5
+saga-orchestrator-1  | 2026-10-17 04:25:09.100 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] INFO  r.u.s.s.SagaOrchestratorService - >>> Сага 50f64683-84a8-444b-9f97-5b8618306292 создана, публикуем команду upload
+saga-orchestrator-1  | 2026-10-17 04:25:12.022 [scheduling-1] INFO  r.u.s.publisher.SagaOutboxPublisher - Отправлено saga-событие REPORT_UPLOAD_COMMAND (key=report.upload.command)
+saga-orchestrator-1  | 2026-10-17 04:25:12.542 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] INFO  r.u.saga.listener.SagaResultListener - <<< saga.result: routingKey=report.upload.failed, sagaId=50f64683-84a8-444b-9f97-5b8618306292
+saga-orchestrator-1  | 2026-10-17 04:25:12.550 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-1] WARN  r.u.s.s.SagaOrchestratorService - !!! Сага 50f64683-84a8-444b-9f97-5b8618306292 FAILED на шаге 1: The specified bucket does not exist

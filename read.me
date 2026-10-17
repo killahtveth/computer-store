@@ -36,3 +36,26 @@ curl -i http://localhost:8080/api/reports/status
 запросы принимают разные инстансы docker compose logs report-service --tail 50
 роняем вторйо сервис docker stop computerstore-report-service-2
 добавляем четвертый docker compose up -d --scale report-service=4
+
+demo5 2service
+curl -X POST "http://localhost:8080/api/reports/export/full"
+
+docker exec computer_store_db psql -U postgres -d computer_store -c "SELECT saga_id, status, current_step, object_name, error FROM saga_instances ORDER BY id DESC LIMIT 5;"
+
+docker exec computer_store_db psql -U postgres -d computer_store -c "SELECT * FROM notifications ORDER BY id DESC LIMIT 5;"
+
+minio файл существует
+
+
+curl -X POST "http://localhost:8080/api/reports/export/full?forceFailNotification=true"
+docker exec computer_store_db psql -U postgres -d computer_store -c "SELECT saga_id, status, current_step, object_name, error FROM saga_instances ORDER BY id DESC LIMIT 5;"
+
+docker exec computer_store_db psql -U postgres -d computer_store -c "SELECT * FROM notifications ORDER BY id DESC LIMIT 5;"
+
+
+docker compose stop notification-service
+curl -X POST "http://localhost:8080/api/reports/export/full"
+смотрим очередь
+docker exec computer_store_db psql -U postgres -d computer_store -c "SELECT saga_id, status, current_step, object_name, error FROM saga_instances ORDER BY id DESC LIMIT 5;"
+docker compose start notification-service
+docker exec computer_store_db psql -U postgres -d computer_store -c "SELECT saga_id, status, current_step, object_name, error FROM saga_instances ORDER BY id DESC LIMIT 5;"
