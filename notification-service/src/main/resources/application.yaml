@@ -34,6 +34,13 @@ eureka:
     instance-id: ${spring.application.name}:${HOSTNAME:${random.value}}:${server.port}
 
 management:
+  tracing:
+    enabled: true
+    sampling:
+      probability: 1.0   # 100% в dev
+  otlp:
+    tracing:
+      endpoint: http://jaeger:4318/v1/traces
   endpoints:
     web:
       exposure:

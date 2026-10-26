@@ -2,6 +2,13 @@ server:
   port: 8080
 
 management:
+  tracing:
+    enabled: true
+    sampling:
+      probability: 1.0   # 100% в dev
+  otlp:
+    tracing:
+      endpoint: http://jaeger:4318/v1/traces
   endpoints:
     web:
       exposure:
@@ -39,6 +46,10 @@ spring:
             - Path=/health/gateway
           filters:
             - RewritePath=/health/gateway, /actuator/health
+        - id: auth
+          uri: lb://core-service
+          predicates:
+            - Path=/auth/**
       discovery:
         locator:
           enabled: true

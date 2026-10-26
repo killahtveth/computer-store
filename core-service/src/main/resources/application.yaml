@@ -1,11 +1,21 @@
 server:
   port: 8081
 
+jwt:
+  secret: ${JWT_SECRET}
+
 report:
   service:
     url: ${REPORT_SERVICE_URL:lb://report-service}
 
 management:
+  tracing:
+    enabled: true
+    sampling:
+      probability: 1.0   # 100% в dev
+  otlp:
+    tracing:
+      endpoint: http://jaeger:4318/v1/traces
   endpoints:
     web:
       exposure:
@@ -22,6 +32,11 @@ management:
 spring:
   application:
     name: core-service
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri:
   datasource:
     url: ${SPRING_DATASOURCE_URL}
     username: ${SPRING_DATASOURCE_USERNAME}
