@@ -18,7 +18,9 @@ services:
       start_period: 10s
 
   core-service:
-    build: ./core-service
+    build:
+      context: .
+      dockerfile: core-service/Dockerfile
     container_name: computer_store_core
     depends_on:
       db:
